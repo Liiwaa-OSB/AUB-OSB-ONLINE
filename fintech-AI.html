@@ -1,0 +1,1405 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Design Thinking · Program | OSB Executive Education</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap"
+        rel="stylesheet" />
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #ffffff;
+            color: #1a1a1a;
+            line-height: 1.5;
+        }
+
+        /* Design tokens — neutral, no accent colors */
+        :root {
+            --color-primary: #840132;
+            --color-primary-dark: #6a132c;
+            --color-text-muted: #4b5563;
+            --color-border-light: #e5e7eb;
+            --color-bg-light: #f9fafb;
+            --color-card-shadow: 0 8px 20px rgba(0, 0, 0, 0.02), 0 2px 6px rgba(0, 0, 0, 0.05);
+            --container-max-width: 1280px;
+            --border-radius: 5px;
+        }
+
+        .container {
+            max-width: var(--container-max-width);
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .section {
+            padding: 4rem 0;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            color: var(--color-primary-dark);
+            margin-bottom: 2rem;
+            /* border-left: 4px solid #2c2c2c; */
+            /* padding-left: 1rem; */
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .text-center .section-title {
+            border-left: none;
+            padding-left: 0;
+            text-align: center;
+        }
+
+        /* ===== BUTTONS ===== */
+        .btn {
+            display: inline-block;
+            font-weight: 700;
+            font-size: 16px;
+            padding: 0.9rem 1.8rem;
+            border-radius: var(--border-radius);
+            text-decoration: none;
+            transition: all 0.2s ease;
+            border: none;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .btn--primary {
+            background: var(--color-primary);
+            color: #fff;
+        }
+
+        .btn--primary:hover {
+            background: var(--color-primary-dark);
+            transform: scale(1.03);
+        }
+
+        .btn--accent {
+            background: var(--color-primary);
+            color: #fff;
+        }
+
+        .btn--accent:hover {
+            background: var(--color-primary-dark);
+            transform: scale(1.03);
+        }
+
+        .btn--outline-light {
+            background: transparent;
+            color: #fff;
+            border: 2px solid #fff;
+        }
+
+        .btn--outline-light:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: scale(1.03);
+        }
+
+        .btn--white {
+            background: #fff;
+            color: var(--color-primary);
+            font-weight: 700;
+            font-size: 18px;
+            padding: 1rem 2.5rem;
+        }
+
+        .btn--white:hover {
+            background: #f0f0f0;
+        }
+
+        .btn--full {
+            width: 100%;
+        }
+
+        /* New btn--secondary outline style */
+        .btn--secondary {
+            background: transparent;
+            color: var(--color-primary);
+            border: 2px solid var(--color-primary);
+        }
+
+        .btn--secondary:hover {
+            background: var(--color-primary);
+            color: #fff;
+            transform: scale(1.03);
+        }
+
+        /* Hero */
+        .hero {
+            background: #0f0f0f;
+            padding: 5rem 0;
+            position: relative;
+        }
+
+        .hero__content {
+            max-width: 700px;
+            color: white;
+        }
+
+        .hero__title {
+            font-size: 3rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero__subtitle {
+            font-size: 1.25rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            color: #cccccc;
+            margin-bottom: 1rem;
+        }
+
+        .hero__text {
+            font-size: 1.1rem;
+            opacity: 0.85;
+            margin: 1.5rem 0 1rem;
+        }
+
+        .hero__buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        /* SECTION 2: DETAIL BORDER BOX (vertical separators) */
+        .detail-border-box {
+            border: 1px solid var(--color-border-light);
+            border-radius: var(--border-radius);
+            background: white;
+            overflow: hidden;
+
+
+
+
+            padding-top: 0;
+            margin-top: -30px;
+            z-index: 9999;
+            position: relative;
+        }
+
+        .detail-flex-row {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .detail-item-v {
+            flex: 1;
+            padding: 1.5rem 1rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            background: white;
+        }
+
+        .detail-item-v:not(:last-child) {
+            border-right: 1px solid var(--color-border-light);
+        }
+
+        .detail-item-v__icon {
+            flex-shrink: 0;
+            color: #2c2c2c;
+        }
+
+        .detail-item-v__label {
+            font-size: 0.8rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            color: #6b7280;
+            letter-spacing: 0.03em;
+        }
+
+        .detail-item-v__value {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--color-primary-dark);
+        }
+
+        .detail-item-v__sub {
+            font-size: 0.75rem;
+            color: #4b5563;
+        }
+
+        @media (max-width: 768px) {
+            .detail-flex-row {
+                flex-direction: column;
+            }
+
+            .detail-item-v:not(:last-child) {
+                border-right: none;
+                border-bottom: 1px solid var(--color-border-light);
+            }
+        }
+
+        /* Why This Program (2 cards per row, hover reveal text) */
+        .two-col-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        .two-col-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        .reason-card {
+            background: #ffffff;
+            border-radius: var(--border-radius);
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.02);
+            transition: transform 0.25s ease, box-shadow 0.3s ease;
+            height: 220px;
+            /* fixed height – card never changes size */
+            overflow: hidden;
+            position: relative;
+            cursor: default;
+            border: 1px solid var(--color-primary);
+        }
+
+        .reason-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 24px 36px -14px rgba(0, 0, 0, 0.12);
+            /* border-color: #e2edf7; */
+        }
+
+        /* inner wrapper – holds both the visible and the hidden content */
+        .reason-card__inner {
+            transition: transform 0.45s cubic-bezier(0.2, 0.85, 0.4, 1);
+            will-change: transform;
+            padding: 2rem 1.8rem;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        /* initial visible block: icon (above title) + title + short hint */
+        .reason-card__visible {
+            transition: opacity 0.25s ease, visibility 0.25s ease;
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* hidden text that will replace the visible block on hover */
+        .reason-card__hover-text {
+            margin-top: 0.75rem;
+            color: #2c3e50;
+            font-size: 0.96rem;
+            line-height: 1.55;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.35s ease 0.05s, visibility 0.35s ease 0.05s;
+        }
+
+        /* on hover: shift the inner content upward, fade out the visible block,
+     and fade in the hover text */
+        .reason-card:hover .reason-card__inner {
+            transform: translateY(-110px);
+        }
+
+        .reason-card:hover .reason-card__visible {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .reason-card:hover .reason-card__hover-text {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* icon above title */
+        .reason-card__top-icon {
+            width: 44px;
+            height: 44px;
+            color: #2c3e50;
+            margin-bottom: 0.75rem;
+        }
+
+        .reason-card__title {
+            font-size: 1.55rem;
+            font-weight: 700;
+            color: #121826;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.01em;
+        }
+
+        .reason-card__short {
+            color: #5b6e8c;
+            font-size: 0.92rem;
+            line-height: 1.4;
+            font-weight: 450;
+            margin-top: 0.25rem;
+        }
+
+        /* extra long text styling */
+        .reason-card__hover-text p {
+            margin: 0;
+        }
+
+        /* responsive: adjust height on smaller screens */
+        @media (max-width: 768px) {
+            .two-col-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .reason-card {
+                height: auto;
+                min-height: 300px;
+            }
+
+            .reason-card:hover .reason-card__inner {
+                transform: translateY(-80px);
+            }
+        }
+
+        @media (max-width: 640px) {
+            .two-col-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Who Should Enroll : image left (or reversed) */
+        .split-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        .split-text__subtitle {
+            font-weight: 700;
+            font-size: 1.25rem;
+            color: var(--color-primary);
+            margin-top: 1.25rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .split-text__subtitle:first-of-type {
+            margin-top: 0;
+        }
+
+        .split-text p {
+            color: #4b5563;
+            margin-bottom: 0.75rem;
+            line-height: 1.6;
+        }
+
+        .split-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: var(--border-radius);
+            background: #000;
+            object-fit: cover;
+            aspect-ratio: 4/3;
+        }
+
+        @media (max-width: 768px) {
+            .split-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .split-layout.reverse-mobile {
+                flex-direction: column-reverse;
+            }
+        }
+
+        /* ===== INSTRUCTOR ===== */
+        .instructor-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            align-items: start;
+        }
+
+        @media (min-width: 1024px) {
+            .instructor-grid {
+                grid-template-columns: auto 1fr;
+            }
+        }
+
+        .instructor-grid__image {
+            height: 100%;
+            aspect-ratio: 1 / 1;
+            max-width: 300px;
+            margin-top: 12px;
+        }
+
+        .instructor-grid__image img {
+            max-width: 100%;
+        }
+
+        .instructor-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .instructor-grid__name {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--color-text-muted);
+        }
+
+        .instructor-grid__title {
+            font-size: 16px;
+            color: var(--color-primary);
+            line-height: 1.3;
+            margin-bottom: 1rem;
+        }
+
+        .instructor-grid__bio {
+            font-size: 16px;
+            line-height: 1.8;
+            opacity: 0.9;
+        }
+
+        /*===== Who should enroll  =====*/
+        /* Two-column list for better vertical economy */
+        .two-column-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.75rem 1.5rem;
+            margin-bottom: 2rem;
+            padding-left: 1.25rem;
+        }
+
+        .two-column-list li {
+            margin-bottom: 0.5rem;
+            line-height: 1.5;
+            break-inside: avoid;
+        }
+
+        /* Admission requirements block */
+        .admission-block {
+            background: #f8fafc;
+            border-left: 4px solid var(--color-primary, #2563eb);
+            padding: 1rem 1.25rem;
+            border-radius: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .admission-title {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--color-primary, #2563eb);
+            margin-bottom: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .admission-list {
+            margin: 0;
+            padding-left: 1.25rem;
+        }
+
+        .admission-list li {
+            margin-bottom: 0.75rem;
+            line-height: 1.5;
+            color: #1f2937;
+        }
+
+        .admission-list li:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Responsive: single column on mobile */
+        @media (max-width: 768px) {
+            .two-column-list {
+                grid-template-columns: 1fr;
+                gap: 0.5rem;
+            }
+
+            .admission-block {
+                padding: 0.875rem 1rem;
+            }
+        }
+
+        /* Keep your existing .split-text__subtitle style */
+        .split-text__subtitle {
+            font-weight: 700;
+            font-size: 1.25rem;
+            color: var(--color-primary);
+            margin-top: 1.25rem;
+            margin-bottom: 0.5rem;
+        }
+
+
+        /* Application carousel (no-border cards, icon+title) */
+        .carousel {
+            position: relative;
+        }
+
+        .carousel__container {
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+            padding-bottom: 0.5rem;
+        }
+
+        .carousel__container::-webkit-scrollbar {
+            display: none;
+        }
+
+        .carousel__track {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .carousel__slide {
+            flex: 0 0 auto;
+            scroll-snap-align: start;
+            width: calc((100% - 4.5rem) / 4);
+        }
+
+        .app-icon-card {
+            background: transparent;
+            border: none;
+            text-align: center;
+            padding: 1rem 0.5rem;
+            transition: transform 0.2s ease;
+        }
+
+        .app-icon-card:hover {
+            transform: translateY(-6px);
+        }
+
+        .app-icon-card__icon {
+            width: 56px;
+            height: 56px;
+            margin: 0 auto 1rem;
+            color: #2c2c2c;
+        }
+
+        .app-icon-card__title {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--color-primary);
+        }
+
+        .carousel__btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 60px;
+            width: 42px;
+            height: 42px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            z-index: 2;
+        }
+
+        .carousel__btn--prev {
+            left: -1rem;
+        }
+
+        .carousel__btn--next {
+            right: -1rem;
+        }
+
+        @media (max-width: 1024px) {
+            .carousel__slide {
+                width: calc((100% - 3rem) / 3);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .carousel__slide {
+                width: calc((100% - 1.5rem) / 2);
+            }
+
+            .carousel__btn--prev {
+                left: 0;
+            }
+
+            .carousel__btn--next {
+                right: 0;
+            }
+        }
+
+        @media (max-width: 540px) {
+            .carousel__slide {
+                width: 100%;
+            }
+        }
+
+        /* Info Cards (timing, fees) */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .info-card {
+            background: white;
+            border: 1px solid var(--color-border-light);
+            border-radius: var(--border-radius);
+            padding: 1.75rem;
+            transition: all 0.2s;
+        }
+
+        .info-card:hover {
+            border-color: #9ca3af;
+        }
+
+        .info-card__icon {
+            color: #2c2c2c;
+            margin-bottom: 1rem;
+        }
+
+        .info-card__title {
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: #6b7280;
+        }
+
+        .info-card__value {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--color-primary-dark);
+            margin-top: 0.5rem;
+        }
+
+        .info-card__sub {
+            font-size: 0.8rem;
+            color: #4b5563;
+            margin-top: 0.25rem;
+        }
+
+        /* Related programs */
+        .program-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .program-card {
+            background: white;
+            border: 1px solid #eef2f6;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            transition: all 0.25s;
+        }
+
+        .program-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 30px -12px rgba(0, 0, 0, 0.1);
+        }
+
+        .program-card__image {
+            height: 180px;
+            background: #0a0a0a;
+        }
+
+        .program-card__image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .program-card__content {
+            padding: 1.5rem;
+        }
+
+        .program-card__title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+        }
+
+        .program-card__text {
+            color: #4b5563;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .btn--full {
+            width: 100%;
+            margin-top: 1rem;
+            background: #f3f4f6;
+            color: var(--color-primary);
+            border-radius: var(--border-radius);
+        }
+
+        .btn--full:hover {
+            background: var(--color-primary);
+            color: white;
+        }
+
+        @media (max-width: 1024px) {
+            .program-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 640px) {
+            .program-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* CTA contact section */
+        .cta {
+            background: var(--color-primary-dark);
+            color: white;
+            text-align: center;
+            padding: 3rem 0;
+            border-radius: var(--border-radius);
+            margin: 2rem 0;
+        }
+
+        .cta__title {
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        .cta__contact-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .cta__contact-link {
+            color: white;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 0.5rem 1.2rem;
+            border-radius: var(--border-radius);
+        }
+
+        /* Sticky buttons (unique design) */
+        .sticky-cta {
+            position: fixed;
+            bottom: 28px;
+            right: 28px;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .sticky-cta__btn {
+            width: 52px;
+            height: 52px;
+            background: var(--color-primary);
+            backdrop-filter: blur(4px);
+            border-radius: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.25s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            box-shadow: 0 6px 14px rgba(0, 0, 0, 0.2);
+            text-decoration: none;
+            color: white;
+            position: relative;
+        }
+
+        .sticky-cta__btn:hover {
+            background: #000000;
+            transform: scale(1.08);
+            width: 56px;
+            height: 56px;
+        }
+
+        .sticky-cta__icon {
+            width: 22px;
+            height: 22px;
+            fill: none;
+            stroke: white;
+            stroke-width: 1.8;
+        }
+
+        .sticky-cta__label {
+            position: absolute;
+            right: 70px;
+            background: #1e293b;
+            color: white;
+            padding: 6px 14px;
+            border-radius: var(--border-radius);
+            font-size: 0.8rem;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.2s;
+            font-weight: 500;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .sticky-cta__btn:hover .sticky-cta__label {
+            opacity: 1;
+        }
+
+        @media (max-width: 640px) {
+            .sticky-cta {
+                bottom: 20px;
+                right: 20px;
+                gap: 12px;
+            }
+
+            .sticky-cta__btn {
+                width: 46px;
+                height: 46px;
+            }
+        }
+
+        hr {
+            margin: 1rem 0;
+            border-color: #eef2f6;
+        }
+
+        img.black-placeholder {
+            background: #000000;
+            object-fit: cover;
+        }
+    </style>
+</head>
+
+<body>
+
+    <main>
+        <!-- HERO -->
+        <section class="hero">
+            <div class="container">
+                <div class="hero__content">
+                    <h1 class="hero__title">Online Professional Certificate <br /> in Fintech and AI</h1>
+                    <h2 class="hero__subtitle">The future of finance is intelligent</h2>
+                    <!-- <p class="hero__text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tristique
+                        justo nec sapien venenatis, at pharetra massa fermentum. Curabitur vitae est nec lorem.</p> -->
+                    <div class="hero__buttons">
+                        <button class="btn btn--primary">Register Now</button>
+                        <button class="btn btn--outline-light">Contact Us</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PROGRAM DETAILS (Bordered box + vertical separators) -->
+        <section class="">
+            <div class="container">
+                <div class="detail-border-box">
+                    <div class="detail-flex-row">
+                        <div class="detail-item-v"><i data-lucide="calendar" width="28" height="28"
+                                class="detail-item-v__icon"></i>
+                            <div>
+                                <div class="detail-item-v__label">Dates</div>
+                                <div class="detail-item-v__value">Launching soon</div>
+                            </div>
+                        </div>
+                        <div class="detail-item-v"><i data-lucide="clock" width="28" height="28"
+                                class="detail-item-v__icon"></i>
+                            <div>
+                                <div class="detail-item-v__label">Duration</div>
+                                <div class="detail-item-v__value">2-3 months</div>
+                            </div>
+                        </div>
+                        <div class="detail-item-v"><i data-lucide="user" width="28" height="28"
+                                class="detail-item-v__icon"></i>
+                            <div>
+                                <div class="detail-item-v__label">Format</div>
+                                <div class="detail-item-v__value">Online</div>
+                                <div class="detail-item-v__sub">asynchronous with Interactive sessions</div>
+
+                            </div>
+                        </div>
+                        <div class="detail-item-v"><i data-lucide="dollar-sign" width="28" height="28"
+                                class="detail-item-v__icon"></i>
+                            <div>
+                                <div class="detail-item-v__label">Cost</div>
+                                <div class="detail-item-v__value">$1600</div>
+                            </div>
+                        </div>
+                        <div class="detail-item-v"><i data-lucide="book-open" width="28" height="28"
+                                class="detail-item-v__icon"></i>
+                            <div>
+                                <div class="detail-item-v__label">Curriculum</div>
+                                <div class="detail-item-v__value"> 3-credits course module </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PROGRAM OVERVIEW (lorem ipsum) -->
+        <section class="section">
+            <div class="container">
+                <div class="split-layout">
+                    <div><img
+                            src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='500' viewBox='0 0 800 500'%3E%3Crect width='800' height='500' fill='%23000000'/%3E%3C/svg%3E"
+                            alt="black placeholder" style="border-radius: 5px; width:100%; background:#000;"></div>
+                    <div>
+                        <h2 class="section-title" style="margin-top:0;">Program Description</h2>
+                        <p>The Online Certificate in FinTech and AI at the Suliman S. Olayan School of Business,
+                            American University of Beirut, is designed as a focused professional credential to meet the
+                            growing demand for expertise in financial technologies and artificial intelligence.
+                        </p>
+                        <p>
+                            The certificate targets a broad ecosystem of professionals and stakeholders interested in
+                            understanding the impact of FinTech and AI on financial services, business operations,
+                            regulation, and digital transformation. It is designed for individuals across finance,
+                            technology, consulting, legal, compliance, entrepreneurship, operations, and related
+                            industries seeking practical knowledge of the evolving digital financial landscape.
+                        </p>
+                        <p>
+                            The certificate emphasizes the role of digital transformation in finance, covering areas
+                            such
+                            as blockchain applications, cryptocurrencies, digital payments, mobile banking, and
+                            AI-driven financial services. Through interactive online lectures and case studies,
+                            participants will gain the ability to critically analyze innovations in FinTech, assess
+                            their risks and opportunities, and explore entrepreneurial applications.
+                        </p>
+                        <p>
+                            This certificate is a pivotal stepping stone for professionals aiming to advance their
+                            careers, adapt to the fast-changing financial landscape, or explore entrepreneurial
+                            opportunities within the FinTech sector.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- WHY THIS PROGRAM (2 cards per row, hover reveals text) -->
+        <section class="section" style="background: #fbfdff; padding: 3rem 0;">
+            <div class="container">
+                <h2 class="section-title">Why This Program</h2>
+                <div class="two-col-grid">
+
+                    <!-- Card 1: Practical -->
+                    <div class="reason-card">
+                        <div class="reason-card__inner">
+                            <div class="reason-card__visible">
+                                <i data-lucide="briefcase" width="44" height="44" class="reason-card__top-icon"></i>
+                                <div class="reason-card__title">Practical</div>
+                                <div class="reason-card__short">Real-world case studies & hands-on insights.</div>
+                            </div>
+                            <div class="reason-card__hover-text">
+                                <p>Combines real-world case studies, industry applications, and hands‑on insights that
+                                    participants can immediately apply in their careers and organizations. No
+                                    theoretical overload — just actionable knowledge.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 2: Career‑Advancing -->
+                    <div class="reason-card">
+                        <div class="reason-card__inner">
+                            <div class="reason-card__visible">
+                                <i data-lucide="trending-up" width="44" height="44" class="reason-card__top-icon"></i>
+                                <div class="reason-card__title">Career‑Advancing</div>
+                                <div class="reason-card__short">Strengthen in‑demand skills for leadership.</div>
+                            </div>
+                            <div class="reason-card__hover-text">
+                                <p>Strengthens the skills that matter most for professional growth and leadership
+                                    opportunities. Stand out in your field, unlock promotions, and build a future‑proof
+                                    career path.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 3: Flexible -->
+                    <div class="reason-card">
+                        <div class="reason-card__inner">
+                            <div class="reason-card__visible">
+                                <i data-lucide="calendar" width="44" height="44" class="reason-card__top-icon"></i>
+                                <div class="reason-card__title">Flexible</div>
+                                <div class="reason-card__short">Online learning for busy professionals.</div>
+                            </div>
+                            <div class="reason-card__hover-text">
+                                <p>Delivered fully online to accommodate demanding schedules and diverse time zones.
+                                    Learn at your own pace, balance work and study, and access materials anytime,
+                                    anywhere.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 4: Technology‑Driven -->
+                    <div class="reason-card">
+                        <div class="reason-card__inner">
+                            <div class="reason-card__visible">
+                                <i data-lucide="cpu" width="44" height="44" class="reason-card__top-icon"></i>
+                                <div class="reason-card__title">Technology‑Driven</div>
+                                <div class="reason-card__short">Latest digital tools, AI & fintech.</div>
+                            </div>
+                            <div class="reason-card__hover-text">
+                                <p>Centers on the latest digital tools, AI applications, and financial technologies that
+                                    are transforming industries. Stay ahead of the curve with technology‑first learning.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- INSTRUCTOR -->
+        <section class="section" style="background: #f5f5f5">
+            <div class="container">
+                <h2 class="section-title">Program Instructor</h2>
+                <div class="instructor-grid">
+                    <div class="instructor-grid__image">
+                        <img src="./images/black.jpg" alt="Assem Safieddine" />
+                    </div>
+                    <div>
+                        <h3 class="instructor-grid__name">Assem Safieddine</h3>
+                        <div class="instructor-grid__title">
+                            <p>
+                                Finance, Accounting & Managerial Economics
+                            </p>
+                        </div>
+                        <p class="instructor-grid__bio">
+                            Dr. Safieddine holds a Ph.D. in finance from Boston College. His research has been published
+                            in leading finance journals like the Journal of Finance, Journal of Financial Economics,
+                            Journal of Accounting and Economics, Journal of Financial and Quantitative Analysis, and
+                            Journal of Corporate Finance. His reserach has been cited by world renowned experts in the
+                            field and has been profiled in the Business Week, Harvard Business Review, CFA Digest and
+                            the National Bureau of Economic Research along with others. His area of research is risk
+                            management, capital acquisition, mergers and acquisition, cost of capital, and corporate
+                            governance.
+                            <br />
+                            Dr. Assem Safieddine has held faculty appointment at Michigan State University for five
+                            years and visiting faculty appointment at Harvard University Summer School for four years.
+                            Since 2003, he has held faculty appointment at the American University of Beirut. He has
+                            served as the Associate Dean of Academic Programs and Faculty Affairs at the Olayan School
+                            of Business for two years. He also served as the chairperson of the Finance, Accounting and
+                            Managerial Economics Track for seven years at the American University of Beirut (AUB). He
+                            served as a member of the CFA Institute speaker retainer program and has been invited to
+                            speak on Finance topics at investment firms worldwide. He has served as an advisor notably
+                            on corporate governance and financial restructuring for several multinational companies and
+                            organizations including (International): IFC, IIF, (Abu Dhabi): Al Badie Group, Al Hilal
+                            Bank, Abu Dhabi Chamber of Commerce, Sorouh, Al Qudra, (Kuwait): GCC Capital, Union of
+                            Investment Companies, (Lebanon): Central Bank of Lebanon, Banking Control Commission,
+                            (Saudi): Aramco, Ministry of Trade and several others.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- WHO SHOULD ENROLL (Image left, text with 2 subtitles + admission requirements) -->
+        <section class="section">
+            <div class="container">
+                <h2 class="section-title">Who Is This Program For?</h2>
+                <div class="split-layout">
+                    <div class="split-text">
+                        <p>Open to learners from all backgrounds interested in how FinTech and AI are transforming the
+                            financial ecosystem.</p>
+
+                        <div class="split-text__subtitle">You are:</div>
+                        <ol class="two-column-list">
+                            <li>Finance and banking professionals seeking to understand emerging financial technologies
+                                and
+                                AI applications.</li>
+                            <li>Business leaders and managers driving digital transformation within their organizations.
+                            </li>
+                            <li>Technology and IT professionals interested in FinTech innovation and AI-powered
+                                solutions.
+                            </li>
+                            <li>Consultants, legal advisors, and compliance professionals navigating evolving financial
+                                regulations and digital ecosystems.</li>
+                            <li>Entrepreneurs and start-up founders exploring opportunities in FinTech and digital
+                                financial
+                                services.</li>
+                            <li>Operations and strategy professionals aiming to leverage technology for efficiency and
+                                innovation.</li>
+                            <li>Recent graduates and career switchers looking to build future-ready skills in a rapidly
+                                growing field.</li>
+                            <li>Professionals across industries who want to stay competitive in the evolving digital
+                                economy.</li>
+                        </ol>
+                    </div>
+                    <div class="split-image">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='450' viewBox='0 0 600 450'%3E%3Crect width='600' height='450' fill='%23000000'/%3E%3C/svg%3E"
+                            alt="Program illustration">
+                    </div>
+                </div>
+                <!-- New Admission Requirements Block -->
+                <div class="admission-block">
+                    <div class="admission-title">Admission requirements</div>
+                    <ul class="admission-list">
+                        <li><strong>English Language:</strong> Learners must meet the English Language Proficiency
+                            Requirement (ELPR). For more info, please consult the FAQs.</li>
+                        <li><strong>Valid academic or professional qualifications:</strong> While a bachelor’s degree is
+                            preferred, candidates without one may be admitted based on work experience, professional
+                            certifications, or other relevant qualifications.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- APPLICATION AREA (no border cards, icon + title, carousel) -->
+        <section class="section" style="background: #ffffff;">
+            <div class="container">
+                <h2 class="section-title">Application Areas</h2>
+                <div class="carousel js-carousel-app" id="appCarousel">
+                    <button class="carousel__btn carousel__btn--prev js-prev-app">‹</button>
+                    <div class="carousel__container js-carousel-container-app">
+                        <div class="carousel__track js-track-app">
+                            <div class="carousel__slide">
+                                <div class="app-icon-card"><i data-lucide="briefcase" width="44" height="44"
+                                        class="app-icon-card__icon"></i>
+                                    <div class="app-icon-card__title">Strategy & Ops</div>
+                                </div>
+                            </div>
+                            <div class="carousel__slide">
+                                <div class="app-icon-card"><i data-lucide="shopping-bag" width="44" height="44"
+                                        class="app-icon-card__icon"></i>
+                                    <div class="app-icon-card__title">Product Innovation</div>
+                                </div>
+                            </div>
+                            <div class="carousel__slide">
+                                <div class="app-icon-card"><i data-lucide="bar-chart-3" width="44" height="44"
+                                        class="app-icon-card__icon"></i>
+                                    <div class="app-icon-card__title">Data-Driven Design</div>
+                                </div>
+                            </div>
+                            <div class="carousel__slide">
+                                <div class="app-icon-card"><i data-lucide="users" width="44" height="44"
+                                        class="app-icon-card__icon"></i>
+                                    <div class="app-icon-card__title">Customer Experience</div>
+                                </div>
+                            </div>
+                            <div class="carousel__slide">
+                                <div class="app-icon-card"><i data-lucide="cpu" width="44" height="44"
+                                        class="app-icon-card__icon"></i>
+                                    <div class="app-icon-card__title">Digital Transformation</div>
+                                </div>
+                            </div>
+                            <div class="carousel__slide">
+                                <div class="app-icon-card"><i data-lucide="globe" width="44" height="44"
+                                        class="app-icon-card__icon"></i>
+                                    <div class="app-icon-card__title">Global Markets</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="carousel__btn carousel__btn--next js-next-app">›</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- TIMING, FEES & LOCATION -->
+        <section class="section" style="background: #fcfcfc;">
+            <div class="container">
+                <h2 class="section-title">Program Details</h2>
+                <div class="info-grid">
+                    <div class="info-card">
+                        <i data-lucide="calendar" width="32" class="info-card__icon"></i>
+                        <div class="info-card__title">Dates</div>
+                        <div class="info-card__value">Launching soon</div>
+                    </div>
+
+                    <div class="info-card">
+                        <i data-lucide="clock" width="32" class="info-card__icon"></i>
+                        <div class="info-card__title">Duration</div>
+                        <div class="info-card__value">2-3 months</div>
+                    </div>
+
+                    <div class="info-card">
+                        <i data-lucide="user" width="32" class="info-card__icon"></i>
+                        <div class="info-card__title">Format</div>
+                        <div class="info-card__value">Online</div>
+                        <div class="info-card__sub">asynchronous with Interactive sessions</div>
+                    </div>
+
+                    <div class="info-card">
+                        <i data-lucide="dollar-sign" width="32" class="info-card__icon"></i>
+                        <div class="info-card__title">Cost</div>
+                        <div class="info-card__value">$1600</div>
+                    </div>
+
+                    <div class="info-card">
+                        <i data-lucide="book-open" width="32" class="info-card__icon"></i>
+                        <div class="info-card__title">Curriculum</div>
+                        <div class="info-card__value">3-credits course module</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- RELATED PROGRAMS (lorem ipsum, black images) -->
+        <section class="section">
+            <div class="container">
+                <h2 class="section-title">You Might Also Be Interested In</h2>
+                <div class="program-grid">
+                    <div class="program-card">
+                        <div class="program-card__image"><img
+                                src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='200' viewBox='0 0 400 200'%3E%3Crect width='400' height='200' fill='%23000000'/%3E%3C/svg%3E"
+                                alt="black"></div>
+                        <div class="program-card__content">
+                            <div class="program-card__title">LOREM IPSUM</div>
+                            <div class="program-card__text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
+                                do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div><a href="#"
+                                class="btn btn--full">Learn More</a>
+                        </div>
+                    </div>
+                    <div class="program-card">
+                        <div class="program-card__image"><img
+                                src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='200' viewBox='0 0 400 200'%3E%3Crect width='400' height='200' fill='%23000000'/%3E%3C/svg%3E"
+                                alt="black"></div>
+                        <div class="program-card__content">
+                            <div class="program-card__title">LOREM IPSUM</div>
+                            <div class="program-card__text">Consectetur adipiscing elit. Vestibulum ante ipsum primis in
+                                faucibus orci luctus et ultrices posuere cubilia curae.</div><a href="#"
+                                class="btn btn--full">Learn More</a>
+                        </div>
+                    </div>
+                    <div class="program-card">
+                        <div class="program-card__image"><img
+                                src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='200' viewBox='0 0 400 200'%3E%3Crect width='400' height='200' fill='%23000000'/%3E%3C/svg%3E"
+                                alt="black"></div>
+                        <div class="program-card__content">
+                            <div class="program-card__title">LOREM IPSUM</div>
+                            <div class="program-card__text">Duis aute irure dolor in reprehenderit in voluptate velit
+                                esse cillum dolore eu fugiat nulla pariatur.</div><a href="#"
+                                class="btn btn--full">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT CTA -->
+        <div class="container">
+            <div class="cta">
+                <div class="cta__content">
+                    <h3 class="cta__title">Lorem Ipsum lorem ipsum lorem</h3>
+                    <p class="cta__text" style="margin-top:0.5rem;">Lorem Ipsum lorem ipsum lorem Lorem Ipsum lorem
+                        ipsum lorem</p>
+                    <div class="cta__contact-links"><button class="btn btn--white js-open-popup"
+                            style="background:white; color:var(--color-primary);">Register</button></div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- STICKY BUTTONS (unique design) -->
+    <div class="sticky-cta">
+        <a href="#" class="sticky-cta__btn" download aria-label="Download Brochure"><svg class="sticky-cta__icon"
+                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 3v12m0 0-3-3m3 3 3-3M5 21h14" />
+            </svg><span class="sticky-cta__label">Brochure</span></a>
+        <a href="#" class="sticky-cta__btn" aria-label="Apply Now"><svg class="sticky-cta__icon" viewBox="0 0 24 24"
+                fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M20 12v8H4v-8M12 2v12m0 0-3-3m3 3 3-3" />
+                <rect x="2" y="6" width="20" height="6" rx="1" />
+            </svg><span class="sticky-cta__label">Apply Now</span></a>
+        <a href="#" class="sticky-cta__btn" aria-label="Contact"><svg class="sticky-cta__icon" viewBox="0 0 24 24"
+                fill="none" stroke="currentColor" stroke-width="1.8">
+                <path d="M22 2L15 9M22 2l-7 7M22 2v6M2 22l7-7M2 22l7-7M2 22h6" />
+                <circle cx="12" cy="12" r="3" />
+            </svg><span class="sticky-cta__label">Contact</span></a>
+    </div>
+
+    <script>
+        lucide.createIcons();
+
+        // Carousel logic for application carousel
+        function initCarousel(carouselElement, containerSelector, trackSelector, prevBtnSelector, nextBtnSelector) {
+            const container = carouselElement.querySelector(containerSelector);
+            const track = carouselElement.querySelector(trackSelector);
+            const prevBtn = carouselElement.querySelector(prevBtnSelector);
+            const nextBtn = carouselElement.querySelector(nextBtnSelector);
+            if (!container || !track) return;
+
+            const slide = () => {
+                const scrollAmount = container.clientWidth;
+                if (nextBtn && prevBtn) {
+                    nextBtn.onclick = () => { container.scrollBy({ left: scrollAmount * 0.9, behavior: 'smooth' }); };
+                    prevBtn.onclick = () => { container.scrollBy({ left: -scrollAmount * 0.9, behavior: 'smooth' }); };
+                }
+            };
+            slide();
+            window.addEventListener('resize', () => slide());
+        }
+
+        const appCarousel = document.getElementById('appCarousel');
+        if (appCarousel) {
+            initCarousel(appCarousel, '.js-carousel-container-app', '.js-track-app', '.js-prev-app', '.js-next-app');
+        }
+
+        // dummy contact alert
+        document.querySelectorAll('.js-open-popup').forEach(btn => {
+            btn.addEventListener('click', () => alert('Contact form popup would open here (integrate later).'));
+        });
+        document.querySelectorAll('.sticky-cta__btn').forEach(btn => {
+            btn.addEventListener('click', (e) => { if (btn.getAttribute('href') === '#') e.preventDefault(); alert('Feature ready — integration with registration platform.'); });
+        });
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <style>
+        /* Keep existing styles, add these new ones */
+    </style>
+
+    <!-- If you haven't already, ensure the .split-layout grid and container styles exist -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>
