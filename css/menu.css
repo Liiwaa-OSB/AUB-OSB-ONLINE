@@ -1,0 +1,579 @@
+/* ===== RESET & GLOBAL ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  color: #000;
+  background: #fff;
+  line-height: 1.6;
+  padding-top: 0 !important;
+}
+
+/* ===== DESIGN TOKENS ===== */
+:root {
+  --color-primary: #840132;
+  --color-primary-dark: #6a132c;
+  --color-accent: #840132;
+  /* fallback, overridden per program */
+  --color-accent-dark: #6a132c;
+
+  --color-text-muted: #515151;
+  --color-bg-light: #f9fafb;
+  --color-border-light: #dadbdb;
+  --color-gray-bg: #808080;
+  --color-dark-gray: #434444;
+  --color-dark-gray-rgb: 67, 68, 68;
+
+  --color-pricing-analytics-accent: #3c955c;
+  --color-design-thinking-accent: #854295;
+  --color-ai-in-supply-chain-accent: #3aa0e2;
+  --color-family-business-governance-accent: #565ebb;
+
+  --font-family-base: "Roboto", sans-serif;
+  --spacing-unit: 1rem;
+  --container-max-width: 1280px;
+  --border-radius: 4px;
+}
+
+/*==============  MENU  ====================*/
+
+/* ---------- UTILITY BAR (desktop only) ---------- */
+.nav-utility {
+  background-color: var(--color-primary-dark);
+  color: #fff;
+  font-size: 0.75rem;
+  padding: 0.5rem 1rem;
+  transition: transform 0.3s ease;
+}
+
+@media (max-width: 1024px) {
+  .nav-utility {
+    display: none;
+  }
+}
+
+.nav-utility-container {
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.nav-utility-link {
+  color: rgba(255, 255, 255, 0.9);
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 0 0.5rem;
+  font-weight: 500;
+}
+
+.nav-utility-link:hover {
+  text-decoration: underline;
+}
+
+.nav-utility-separator {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+/* ---------- MAIN HEADER (logo + desktop mega + burger) ---------- */
+.nav-main-header {
+  background: var(--color-primary);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  position: relative;
+  z-index: 40;
+  transition: transform 0.3s ease;
+}
+
+.nav-main-container {
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@media (min-width: 1024px) and (max-width: 1180px) {
+  .nav-main-container {
+    display: block;
+  }
+}
+
+.nav-logo img {
+  height: 70px;
+  width: auto;
+  display: block;
+}
+
+/* ---------- DESKTOP MEGA MENU ---------- */
+.nav-desktop {
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .nav-desktop {
+    display: flex;
+    align-items: center;
+    gap: 1.8rem;
+    flex: 1;
+    justify-content: flex-end;
+  }
+}
+
+.nav-item {
+  position: relative;
+}
+
+.nav-item > button {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  background: none;
+  border: none;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: white;
+  cursor: pointer;
+  padding: 0.5rem 0;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  transition: opacity 0.2s;
+}
+
+.nav-item > button:hover {
+  opacity: 0.85;
+}
+
+.nav-mega {
+  transform: translateX(-50%);
+  width: 960px;
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  background-color: #fff;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+  padding: 1.8rem;
+  z-index: 50;
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 0.2s ease,
+    visibility 0.2s;
+}
+
+@media screen and (min-width: 1400px) {
+  .nav-mega {
+    width: 1050px;
+  }
+}
+
+.nav-item:hover .nav-mega {
+  opacity: 1;
+  visibility: visible;
+}
+
+.nav-mega-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+.nav-mega h4 {
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 2px solid var(--color-primary);
+  text-transform: uppercase;
+  color: var(--color-primary-dark);
+  font-size: 1rem;
+}
+
+.nav-mega-links {
+  list-style: none;
+}
+
+.nav-mega-links li {
+  margin-bottom: 0.6rem;
+}
+
+.nav-mega-links a {
+  color: #2c3e50;
+  text-decoration: none;
+  font-size: 0.875rem;
+  transition: color 0.2s;
+}
+
+.nav-mega-links a:hover {
+  color: var(--color-primary);
+  text-decoration: underline;
+}
+
+/* ---------- OSB ROW (third level) - will become sticky ---------- */
+.nav-osb {
+  background-color: var(--color-bg-light);
+  width: 100%;
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 20;
+}
+
+.nav-osb-container {
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding: 0 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+@media (min-width: 1024px) and (max-width: 1270px) {
+  .nav-osb-container {
+    display: block;
+  }
+}
+
+/* hidden logo that appears only when sticky */
+.nav-osb-logo {
+  display: none;
+  margin: 1rem 0.5rem 1rem 0;
+}
+
+.nav-osb-logo img {
+  height: 70px;
+  width: auto;
+  padding: 4px 0;
+  transition: all 0.2s;
+}
+
+.nav-osb-links {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.nav-osb-links .osb-nav {
+  display: flex;
+  justify-content: space-between;
+  list-style: none;
+  width: 100%;
+  padding: 0;
+  gap: 0.2rem;
+}
+
+.nav-osb-links .osb-nav-item {
+  position: relative;
+  text-align: center;
+}
+
+.nav-osb-links .osb-nav-item > a {
+  display: flex;
+  align-items: center;
+  color: #1a202c;
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 0.75rem 0.4rem;
+  transition: color 0.2s;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  white-space: nowrap;
+}
+
+.osb-nav-item.has-dropdown > a::after {
+  content: "";
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-size: contain;
+  background-repeat: no-repeat;
+  margin-left: 4px;
+  transition: transform 0.2s;
+}
+
+.nav-osb-links .osb-nav-item > a:hover {
+  color: var(--color-primary);
+}
+
+.nav-osb-links .osb-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: #ffffff;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+  min-width: 260px;
+  padding: 0.6rem 0;
+  list-style: none;
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 0.2s,
+    visibility 0.2s;
+  z-index: 200;
+  text-align: left;
+  border: 1px solid #edf2f7;
+}
+
+.nav-osb-links .osb-nav-item.has-dropdown:hover .osb-dropdown {
+  opacity: 1;
+  visibility: visible;
+}
+
+.nav-osb-links .osb-dropdown li a {
+  display: block;
+  padding: 0.5rem 1rem;
+  color: #2d3748;
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.nav-osb-links .osb-dropdown li a:hover {
+  color: var(--color-primary);
+}
+
+@media (max-width: 1023px) {
+  .nav-osb-links {
+    display: none;
+  }
+  .nav-osb-logo {
+    display: none !important;
+  }
+}
+
+/* ---------- STICKY BEHAVIOR (fixed OSB bar) ---------- */
+body.nav-scrolled .nav-utility,
+body.nav-scrolled .nav-main-header {
+  transform: translateY(-100%);
+}
+
+body.nav-scrolled .nav-osb {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: var(--color-primary);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}
+
+body.nav-scrolled .nav-osb .osb-nav-item > a {
+  color: white;
+}
+
+body.nav-scrolled .nav-osb .osb-nav-item > a:hover {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+body.nav-scrolled .nav-osb .osb-nav-item.has-dropdown > a::after {
+  filter: brightness(0) invert(1);
+}
+
+body.nav-scrolled .nav-osb-logo {
+  display: block !important;
+}
+
+body.nav-scrolled .nav-osb-logo img {
+  height: 70px;
+  width: auto;
+}
+
+/* dropdowns stay readable when OSB is sticky */
+body.nav-scrolled .nav-osb .osb-dropdown {
+  background: white;
+}
+
+body.nav-scrolled .nav-osb .osb-dropdown a {
+  color: var(--color-text-muted);
+}
+body.nav-scrolled .nav-osb .osb-dropdown a:hover {
+  color: var(--color-primary-dark);
+}
+
+/* ---------- MOBILE BURGER & OVERLAY ---------- */
+.nav-mobile-btn {
+  display: block;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: white;
+}
+
+@media (min-width: 1024px) {
+  .nav-mobile-btn {
+    display: none;
+  }
+}
+
+.nav-mobile-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #ffffff;
+  z-index: 2000;
+  overflow-y: auto;
+  transform: translateX(100%);
+  transition: transform 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+  display: flex;
+  flex-direction: column;
+}
+
+.nav-mobile-overlay.open {
+  transform: translateX(0);
+}
+
+.mobile-overlay-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background-color: var(--color-primary);
+}
+
+.mobile-overlay-header .mobile-logo img {
+  height: 50px;
+  width: auto;
+}
+
+.mobile-close-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: white;
+}
+
+.mobile-menu-sections {
+  flex: 1;
+  padding: 1.5rem 1rem;
+}
+
+.mobile-section {
+  margin-bottom: 2rem;
+  border-bottom: 1px solid #e2e8f0;
+  padding-bottom: 1rem;
+}
+
+.mobile-section-title {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  margin-bottom: 1rem;
+  letter-spacing: -0.2px;
+}
+
+.mobile-nav-item {
+  border-bottom: 1px solid #edf2f7;
+}
+
+.mobile-nav-link {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.9rem 0;
+  font-weight: 600;
+  color: #1a202c;
+  text-decoration: none;
+  font-size: 1rem;
+}
+
+.mobile-nav-link.has-sub {
+  cursor: pointer;
+}
+
+.mobile-nav-link .chevron-icon {
+  width: 20px;
+  height: 20px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-size: contain;
+  transition: transform 0.2s;
+}
+
+.mobile-nav-link.open .chevron-icon {
+  transform: rotate(180deg);
+}
+
+.mobile-submenu {
+  display: none;
+  padding: 1rem;
+  margin-bottom: 0.8rem;
+  background-color: #fafbfc;
+}
+
+.mobile-submenu.open {
+  display: block;
+}
+
+.mobile-submenu a {
+  display: block;
+  padding: 0.6rem 0;
+  color: #4a5568;
+  text-decoration: none;
+  font-size: 0.9rem;
+  border-bottom: 1px solid #eef2f6;
+}
+
+.mobile-submenu a:last-child {
+  border-bottom: none;
+}
+
+.mobile-submenu .subcategory-title {
+  font-weight: 700;
+  margin: 0.75rem 0 0.25rem 0;
+  color: var(--color-primary-dark);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+}
+
+.mobile-utility-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+}
+
+.mobile-utility-grid a {
+  background: #f1f5f9;
+  padding: 0.4rem 0.8rem;
+  border-radius: 30px;
+  font-size: 0.75rem;
+  text-decoration: none;
+  color: #1e293b;
+}
+
+body.menu-open {
+  overflow: hidden;
+}
+
+@media (max-width: 1023px) {
+  /* On mobile, when scrolled, make the main header fixed at top */
+  body.nav-scrolled .nav-main-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    transform: none; /* override any transform from desktop */
+  }
+  /* Add padding to body to prevent content jump when header becomes fixed */
+  body.nav-scrolled {
+    padding-top: 70px; /* adjust to match your main header height */
+  }
+  /* Ensure the utility bar stays hidden (it's already hidden on mobile) */
+  /* Ensure OSB row remains hidden and not sticky */
+  body.nav-scrolled .nav-osb {
+    position: relative;
+    top: auto;
+    background-color: var(--color-bg-light);
+    box-shadow: none;
+  }
+  /* Keep OSB logo hidden even if scrolled class is present */
+  body.nav-scrolled .nav-osb-logo {
+    display: none !important;
+  }
+}
