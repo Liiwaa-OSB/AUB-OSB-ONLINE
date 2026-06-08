@@ -1,0 +1,303 @@
+/* ===== FOOTER ===== */
+.bg-burgundy {
+  background: var(--color-primary);
+}
+
+.footer {
+  padding: 0;
+  padding-top: 2rem;
+}
+
+.footer__accred {
+  margin-bottom: 2rem;
+}
+
+.footer__accred img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Top white squares */
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 4px;
+  margin-bottom: 2rem;
+}
+
+@media (min-width: 768px) {
+  .footer-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .footer-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.footer-item {
+  background: #ffffff;
+  padding: 2rem;
+  height: 100%;
+  border: 1px solid #e8e8e8;
+}
+
+.footer-item__title {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: #333;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.footer-item__text {
+  color: #555;
+  line-height: 1.6;
+  font-size: 0.95rem;
+}
+
+.footer-item__link {
+  color: #555;
+  text-decoration: underline;
+  font-size: 0.9rem;
+}
+
+.footer-item__link:hover {
+  text-decoration: none;
+}
+
+/* Middle maroon links */
+.footer-links-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+  background: var(--color-primary);
+  position: relative;
+}
+
+@media (min-width: 768px) {
+  .footer-links-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.footer-links-column {
+  padding: 2rem;
+  background: var(--color-primary);
+  position: relative;
+}
+
+/* Vertical dividers */
+.footer-links-column:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  top: 2rem;
+  right: 0;
+  width: 1px;
+  height: calc(100% - 4rem);
+  background: rgba(255, 255, 255, 0.3);
+}
+
+@media (max-width: 767px) {
+  .footer-links-column:not(:last-child)::after {
+    display: none;
+  }
+}
+
+.footer-links-column ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-links-column li {
+  position: relative;
+}
+
+.footer-links-column a {
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  font-size: 0.95rem;
+  position: relative;
+  padding-bottom: 4px;
+  display: inline-block;
+  transition: color 0.3s;
+}
+
+.footer-links-column li a::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 10px;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.7);
+  transition: width 0.3s ease;
+}
+
+.footer-links-column a:hover {
+  color: rgba(255, 255, 255, 1);
+}
+
+.footer-links-column a:hover::before {
+  width: 100%;
+  background: rgba(255, 255, 255, 1);
+}
+
+/* Bottom social bar */
+.footer-bottom {
+  background: #69132c;
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.social-links {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.social-links li {
+  display: inline-block;
+}
+
+.social-links a {
+  display: block;
+  width: 28px;
+  height: 28px;
+  opacity: 0.7;
+  transition: all 0.3s ease;
+}
+
+.social-links a:hover {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+.social-links .social-fb-icon {
+  background: url("https://www.aub.edu.lb/Style%20Library/AUB/images/SocialMedia/facebook.svg")
+    center no-repeat;
+  background-size: contain;
+}
+
+.social-links .social-tw-icon {
+  background: url("https://www.aub.edu.lb/Style%20Library/AUB/images/SocialMedia/twitter.svg")
+    center no-repeat;
+  background-size: contain;
+}
+
+.social-links .social-in-icon {
+  background: url("https://www.aub.edu.lb/Style%20Library/AUB/images/SocialMedia/linkedin.svg")
+    center no-repeat;
+  background-size: contain;
+}
+
+.social-links .social-ig-icon {
+  background: url("https://www.aub.edu.lb/Style%20Library/AUB/images/SocialMedia/instagram.svg")
+    center no-repeat;
+  background-size: contain;
+}
+
+.social-links .social-yt-icon {
+  background: url("https://www.aub.edu.lb/Style%20Library/AUB/images/SocialMedia/youtube.svg")
+    center no-repeat;
+  background-size: contain;
+}
+
+/* ===== STICKY CTA BUTTONS ===== */
+.sticky-cta {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.sticky-cta__btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 45px;
+  height: 45px;
+  background-color: var(--color-accent);
+  border-radius: 50%;
+  transition:
+    background-color 0.2s,
+    transform 0.2s;
+  position: relative;
+  color: #fff;
+  /* icon color */
+  text-decoration: none;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.sticky-cta__btn:hover {
+  background-color: var(--color-accent-dark);
+  transform: scale(1.05);
+}
+
+.sticky-cta__icon {
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+  stroke: currentColor;
+  display: block;
+}
+
+.sticky-cta__label {
+  position: absolute;
+  right: 100%;
+  /* position to the left of the button */
+  margin-right: 12px;
+  background: var(--color-gray-bg);
+  color: #fff;
+  padding: 6px 14px;
+  border-radius: 30px;
+  font-size: 14px;
+  font-weight: 500;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.sticky-cta__btn:hover .sticky-cta__label {
+  opacity: 1;
+}
+
+/* optional adjustment for smaller screens */
+@media (max-width: 640px) {
+  .sticky-cta {
+    bottom: 20px;
+    right: 20px;
+    gap: 12px;
+  }
+
+  .sticky-cta__btn {
+    width: 42px;
+    height: 42px;
+  }
+
+  .sticky-cta__icon {
+    width: 18px;
+    height: 18px;
+  }
+
+  .sticky-cta__label {
+    font-size: 13px;
+    padding: 4px 10px;
+  }
+}

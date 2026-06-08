@@ -127,10 +127,10 @@ body {
 }
 
 .nav-item {
-  /* position: relative; */
+  position: relative;
 }
 
-.nav-item>button {
+.nav-item > button {
   display: flex;
   align-items: center;
   gap: 0.25rem;
@@ -146,17 +146,16 @@ body {
   transition: opacity 0.2s;
 }
 
-.nav-item>button:hover {
+.nav-item > button:hover {
   opacity: 0.85;
 }
 
 .nav-mega {
-  position: fixed;
-  left: 50%;
   transform: translateX(-50%);
   width: 960px;
-  top: 230px;
-  transform: translate(-50%, -50%);
+  position: absolute;
+  top: 100%;
+  left: 50%;
   background-color: #fff;
   box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
   padding: 1.8rem;
@@ -166,8 +165,6 @@ body {
   transition:
     opacity 0.2s ease,
     visibility 0.2s;
-  max-height: 80vh;
-  overflow-y: auto;
 }
 
 @media screen and (min-width: 1400px) {
@@ -234,7 +231,6 @@ body {
   align-items: center;
   justify-content: space-between;
 }
-
 @media (min-width: 1024px) and (max-width: 1270px) {
   .nav-osb-container {
     display: block;
@@ -274,7 +270,7 @@ body {
   text-align: center;
 }
 
-.nav-osb-links .osb-nav-item>a {
+.nav-osb-links .osb-nav-item > a {
   display: flex;
   align-items: center;
   color: #1a202c;
@@ -288,7 +284,7 @@ body {
   white-space: nowrap;
 }
 
-.osb-nav-item.has-dropdown>a::after {
+.osb-nav-item.has-dropdown > a::after {
   content: "";
   display: inline-block;
   width: 14px;
@@ -300,7 +296,7 @@ body {
   transition: transform 0.2s;
 }
 
-.nav-osb-links .osb-nav-item>a:hover {
+.nav-osb-links .osb-nav-item > a:hover {
   color: var(--color-primary);
 }
 
@@ -345,7 +341,6 @@ body {
   .nav-osb-links {
     display: none;
   }
-
   .nav-osb-logo {
     display: none !important;
   }
@@ -367,15 +362,15 @@ body.nav-scrolled .nav-osb {
   z-index: 1000;
 }
 
-body.nav-scrolled .nav-osb .osb-nav-item>a {
+body.nav-scrolled .nav-osb .osb-nav-item > a {
   color: white;
 }
 
-body.nav-scrolled .nav-osb .osb-nav-item>a:hover {
+body.nav-scrolled .nav-osb .osb-nav-item > a:hover {
   color: rgba(255, 255, 255, 0.8);
 }
 
-body.nav-scrolled .nav-osb .osb-nav-item.has-dropdown>a::after {
+body.nav-scrolled .nav-osb .osb-nav-item.has-dropdown > a::after {
   filter: brightness(0) invert(1);
 }
 
@@ -396,7 +391,6 @@ body.nav-scrolled .nav-osb .osb-dropdown {
 body.nav-scrolled .nav-osb .osb-dropdown a {
   color: var(--color-text-muted);
 }
-
 body.nav-scrolled .nav-osb .osb-dropdown a:hover {
   color: var(--color-primary-dark);
 }
@@ -557,7 +551,6 @@ body.menu-open {
 }
 
 @media (max-width: 1023px) {
-
   /* On mobile, when scrolled, make the main header fixed at top */
   body.nav-scrolled .nav-main-header {
     position: fixed;
@@ -565,16 +558,12 @@ body.menu-open {
     left: 0;
     right: 0;
     z-index: 1000;
-    transform: none;
-    /* override any transform from desktop */
+    transform: none; /* override any transform from desktop */
   }
-
   /* Add padding to body to prevent content jump when header becomes fixed */
   body.nav-scrolled {
-    padding-top: 70px;
-    /* adjust to match your main header height */
+    padding-top: 70px; /* adjust to match your main header height */
   }
-
   /* Ensure the utility bar stays hidden (it's already hidden on mobile) */
   /* Ensure OSB row remains hidden and not sticky */
   body.nav-scrolled .nav-osb {
@@ -583,7 +572,6 @@ body.menu-open {
     background-color: var(--color-bg-light);
     box-shadow: none;
   }
-
   /* Keep OSB logo hidden even if scrolled class is present */
   body.nav-scrolled .nav-osb-logo {
     display: none !important;
