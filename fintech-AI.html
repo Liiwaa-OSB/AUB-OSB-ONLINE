@@ -142,7 +142,7 @@
 
         /* Hero */
         .hero {
-            background: URL("images/AUB-OSB-Fintech-banner.jpg") center 55%;
+            background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), url(images/AUB-OSB-Fintech-banner.jpg) center 55% / cover no-repeat;
             padding: calc(60vh - 325px) 0 2rem 0;
             position: relative;
             height: 60vh;
@@ -301,266 +301,115 @@
 
         }
 
-        /* base card styles (matching & enhancing the original design) */
-        .reason-card {
-            flex: 1 1 320px;
-            min-width: 280px;
-            max-width: 380px;
-            background: #ffffff;
-            border-radius: 1.75rem;
-            box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.08), 0 2px 5px -2px rgba(0, 0, 0, 0.02);
-            transition: transform 0.25s ease, box-shadow 0.3s ease;
-            cursor: default;
-            border: 1px solid rgba(203, 213, 225, 0.4);
+
+        /* Grid layout */
+        .three-col-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-top: 2rem;
         }
 
-        /* Only apply hover effects on devices that support hover */
-        @media (hover: hover) and (pointer: fine) {
-            .reason-card:hover {
-                transform: translateY(-6px);
-                box-shadow: 0 28px 40px -16px rgba(0, 0, 0, 0.12);
-                border-color: rgba(99, 102, 241, 0.2);
-            }
+        /* Flip card container */
+        .reason-card {
+            perspective: 1000px;
+            cursor: pointer;
         }
 
         .reason-card__inner {
             position: relative;
-            border-radius: 1.75rem;
-            background: #ffffff;
-            overflow: hidden;
-            min-height: 320px;
-            height: 100%;
-            transition: all 0.2s ease;
-        }
-
-        /* common shared layer (visible content) */
-        .reason-card__visible {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            padding: 2rem 1.5rem 2rem 1.5rem;
-            background: #ffffff;
-            border-radius: 1.75rem;
             width: 100%;
-            height: 100%;
+            height: 250px;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
         }
 
-        /* hover text — absolute layer that fades in on hover */
-        .reason-card__hover-text {
+        /* Hover flip on desktop */
+        .reason-card:hover .reason-card__inner {
+            transform: rotateY(180deg);
+        }
+
+        /* Front and back common styles - CRITICAL: uses inset:0 */
+        .reason-card__front,
+        .reason-card__back {
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: #ffffff;
-            border-radius: 1.75rem;
-            padding: 2rem 1.5rem;
+            inset: 0;
+            /* ← KEY: makes it work on Safari Mobile */
+            border-radius: 16px;
+            padding: 2rem;
+            backface-visibility: hidden;
             display: flex;
             flex-direction: column;
             justify-content: center;
-            align-items: flex-start;
-            text-align: left;
-            opacity: 0;
-            visibility: hidden;
-            backdrop-filter: blur(0px);
-            box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.8);
-            overflow-y: auto;
-            gap: 0.75rem;
-            pointer-events: none;
         }
 
-        /* Desktop hover behavior */
-        @media (hover: hover) and (pointer: fine) {
-            .reason-card:hover .reason-card__visible {
-                opacity: 0;
-                visibility: hidden;
-                transition: opacity 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1), visibility 0.3s ease;
-            }
-
-            .reason-card:hover .reason-card__hover-text {
-                opacity: 1;
-                visibility: visible;
-                transition: opacity 0.35s cubic-bezier(0.2, 0.9, 0.4, 1.1), visibility 0.35s ease;
-                pointer-events: auto;
-            }
+        /* Front card styles */
+        .reason-card__front {
+            background: #ffffff;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            transform: rotateY(0deg);
         }
 
-        /* Mobile touch behavior - using :active for tap response */
-        @media (hover: none) and (pointer: coarse) {
-            .reason-card {
-                cursor: pointer;
-                -webkit-tap-highlight-color: rgba(99, 102, 241, 0.1);
-            }
-
-            .reason-card:active {
-                transform: scale(0.98);
-                transition: transform 0.1s ease;
-            }
-
-            .reason-card:active .reason-card__visible {
-                opacity: 0;
-                visibility: hidden;
-                transition: opacity 0.2s ease, visibility 0.2s ease;
-            }
-
-            .reason-card:active .reason-card__hover-text {
-                opacity: 1;
-                visibility: visible;
-                transition: opacity 0.25s ease, visibility 0.25s ease;
-                pointer-events: auto;
-            }
-        }
-
-        /* scrollbar styling for long texts (rare, but graceful) */
-        .reason-card__hover-text::-webkit-scrollbar {
-            width: 4px;
-        }
-
-        .reason-card__hover-text::-webkit-scrollbar-track {
-            background: #f1f1f1;
-            border-radius: 10px;
-        }
-
-        .reason-card__hover-text::-webkit-scrollbar-thumb {
-            background: #cbd5e1;
-            border-radius: 10px;
-        }
-
-        /* icon styling */
         .reason-card__top-icon {
-            color: var(--color-primary-dark);
-            margin-bottom: 1.25rem;
-            stroke-width: 1.6;
-            padding: 0.65rem;
-            border-radius: 1.2rem;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.02);
-            transition: transform 0.2s;
+            color: var(--color-primary);
+            /* AUB red color, adjust as needed */
+            margin-bottom: 1.5rem;
         }
 
-        /* Only scale icon on desktop hover */
-        @media (hover: hover) and (pointer: fine) {
-            .reason-card:hover .reason-card__top-icon {
-                transform: scale(1.02);
-            }
-        }
-
-        /* title styling (supports multi-line) */
         .reason-card__title {
-            font-size: 1.65rem;
+            font-size: 1.25rem;
             font-weight: 700;
+            margin-bottom: 1rem;
+            color: #1a1a1a;
             line-height: 1.3;
         }
 
-        /* short description (visible part) */
         .reason-card__short {
             font-size: 1rem;
-            line-height: 1.45;
-            color: #334155;
-            font-weight: 450;
-            margin-top: 0.2rem;
-            max-width: 260px;
-            margin-left: auto;
-            margin-right: auto;
+            color: #666;
+            line-height: 1.4;
         }
 
-        /* hover text paragraph */
-        .reason-card__hover-text p {
-            font-size: 0.98rem;
-            line-height: 1.55;
-            color: #1e293b;
-            margin: 0;
-            font-weight: 450;
+        /* Back card styles */
+        .reason-card__back {
+            background: var(--color-primary);
+            /* AUB red color */
+            color: white;
+            transform: rotateY(180deg);
         }
 
-        /* additional fine-tuning for hover text spacing */
-        .reason-card__hover-text p+p {
-            margin-top: 0.9rem;
+        .reason-card__back p {
+            font-size: 0.95rem;
+            line-height: 1.5;
+            margin-bottom: 1rem;
+            color: white;
         }
 
-        /* responsive behaviour */
-        @media (max-width: 860px) {
-            .cards-grid {
-                gap: 1.75rem;
-            }
+        .reason-card__back p:last-child {
+            margin-bottom: 0;
+        }
 
-            .reason-card__title {
-                font-size: 1.5rem;
-            }
-
-            .reason-card__visible {
-                padding: 1.8rem 1.25rem;
-            }
-
-            .reason-card__hover-text {
-                padding: 1.8rem 1.25rem;
+        /* Touch device support (mobile) - CRITICAL */
+        @media (hover: none) {
+            .reason-card.flipped .reason-card__inner {
+                transform: rotateY(180deg);
             }
         }
 
-        @media (max-width: 640px) {
-            .reason-card {
-                min-width: 260px;
-            }
-
-            .reason-card__title {
-                font-size: 1.45rem;
+        /* Responsive */
+        @media (max-width: 992px) {
+            .three-col-grid {
+                grid-template-columns: repeat(2, 1fr);
             }
         }
 
-        /* subtle decorative effect */
-        .reason-card__visible::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 60px;
-            height: 3px;
-            background: linear-gradient(90deg, #667eea, #764ba2);
-            border-radius: 4px;
-            opacity: 0.2;
-            transition: opacity 0.2s;
-        }
-
-        /* Only hide the line on desktop hover */
-        @media (hover: hover) and (pointer: fine) {
-            .reason-card:hover .reason-card__visible::after {
-                opacity: 0;
-            }
-        }
-
-        /* On mobile, hide the line on tap */
-        @media (hover: none) and (pointer: coarse) {
-            .reason-card:active .reason-card__visible::after {
-                opacity: 0;
-            }
-        }
-
-        /* responsive: adjust height on smaller screens */
         @media (max-width: 768px) {
-            .two-col-grid {
+            .three-col-grid {
                 grid-template-columns: 1fr;
-                gap: 1.5rem;
             }
 
-            .reason-card {
-                height: auto;
-                min-height: 300px;
-            }
-
-            .reason-card:hover .reason-card__inner {
-                transform: translateY(-10px);
-            }
-        }
-
-        /* Additional Safari-specific fixes */
-        @supports (background: -webkit-named-image(i)) {
-            .reason-card__hover-text {
-                -webkit-overflow-scrolling: touch;
-            }
-
-            .reason-card:active {
-                -webkit-tap-highlight-color: transparent;
+            .reason-card__inner {
+                height: 250px;
             }
         }
 
@@ -1786,13 +1635,13 @@
                     <!-- CARD 1: INTERACTIVE, PRACTICAL & INDUSTRY-RELEVANT -->
                     <div class="reason-card">
                         <div class="reason-card__inner">
-                            <div class="reason-card__visible">
+                            <div class="reason-card__front">
                                 <i data-lucide="sparkles" width="48" height="48" class="reason-card__top-icon"></i>
                                 <div class="reason-card__title">INTERACTIVE, PRACTICAL & INDUSTRY-RELEVANT</div>
                                 <div class="reason-card__short">Real-life case studies and top-tier faculty and experts.
                                 </div>
                             </div>
-                            <div class="reason-card__hover-text">
+                            <div class="reason-card__back">
                                 <p>Explore practical applications of FinTech in the Middle East and engage with hands-on
                                     industry-relevant case studies reflecting current trends in FinTech, including
                                     digital transformation and national strategies. Led by top-tier faculty and leaders
@@ -1804,13 +1653,13 @@
                     <!-- CARD 2: GLOBALLY CONNECTED -->
                     <div class="reason-card">
                         <div class="reason-card__inner">
-                            <div class="reason-card__visible">
+                            <div class="reason-card__front">
                                 <i data-lucide="globe" width="48" height="48" class="reason-card__top-icon"></i>
                                 <div class="reason-card__title">GLOBALLY CONNECTED</div>
                                 <div class="reason-card__short">Networking opportunities through AUB's global
                                     connections.</div>
                             </div>
-                            <div class="reason-card__hover-text">
+                            <div class="reason-card__back">
                                 <p>Access to AUB alumni network: Connect with a vast network of professionals, alumni,
                                     and faculty to enhance career prospects.</p>
                                 <p>Industry events and seminars: Participate in events that provide exposure to leading
@@ -1822,13 +1671,13 @@
                     <!-- CARD 3: SHORT, EFFECTIVE & FLEXIBLE -->
                     <div class="reason-card">
                         <div class="reason-card__inner">
-                            <div class="reason-card__visible">
+                            <div class="reason-card__front">
                                 <i data-lucide="calendar-clock" width="48" height="48"
                                     class="reason-card__top-icon"></i>
                                 <div class="reason-card__title">SHORT, EFFECTIVE & FLEXIBLE</div>
                                 <div class="reason-card__short">Intensive and asynchronous 2–3 month format.</div>
                             </div>
-                            <div class="reason-card__hover-text">
+                            <div class="reason-card__back">
                                 <p>Accelerated learning experience tailored for different profiles, delivering
                                     comprehensive FinTech and AI knowledge through focused, practical, and flexible
                                     learning.</p>
@@ -1839,6 +1688,16 @@
                 </div>
             </div>
         </section>
+        <script>
+            // Same working touch logic as your original
+            document.querySelectorAll('.reason-card').forEach(card => {
+                card.addEventListener('click', function () {
+                    if (window.matchMedia("(hover: none)").matches) {
+                        this.classList.toggle('flipped');
+                    }
+                });
+            });
+        </script>
 
         <!-- INSTRUCTOR -->
         <section class="section" style="background: #f5f5f5">
