@@ -101,13 +101,13 @@
         }
 
         .btn--outline-light {
-            background: transparent;
+            background: rgba(255, 255, 255, 0.1);
             color: #fff;
             border: 2px solid #fff;
         }
 
         .btn--outline-light:hover {
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.2);
             transform: scale(1.03);
         }
 
@@ -177,7 +177,6 @@
 
         .hero__text {
             font-size: 1.4rem;
-            opacity: 0.85;
             margin: 1.5rem 0 1rem;
         }
 
@@ -1539,8 +1538,8 @@
                     <h2 class="hero__subtitle">Online Professional Certificate</h2>
                     <p class="hero__text">The future of finance is intelligent</p>
                     <div class="hero__buttons">
-                        <button class="btn btn--primary">Register Now</button>
-                        <button class="btn btn--outline-light">Contact OSB Online Team</button>
+                        <button href="https://aub.edu.lb/osb/Landing/Pages/Online-Fintech-Apply.html" class="btn btn--primary">Register Now</button>
+                        <button href="mailto:fintechaicertificate@aub.edu.lb" class="btn btn--outline-light">Contact OSB Online Team</button>
                     </div>
                 </div>
             </div>
@@ -1689,13 +1688,35 @@
             </div>
         </section>
         <script>
-            // Same working touch logic as your original
             document.querySelectorAll('.reason-card').forEach(card => {
-                card.addEventListener('click', function () {
+                // Click handler for the card itself
+                card.addEventListener('click', function (e) {
+                    e.stopPropagation();  // Prevents the click from bubbling to document
                     if (window.matchMedia("(hover: none)").matches) {
+                        // Toggle the clicked card
                         this.classList.toggle('flipped');
+
+                        // Close any other open cards
+                        document.querySelectorAll('.reason-card').forEach(otherCard => {
+                            if (otherCard !== this && otherCard.classList.contains('flipped')) {
+                                otherCard.classList.remove('flipped');
+                            }
+                        });
                     }
                 });
+            });
+
+            // Close flipped cards when clicking outside
+            document.addEventListener('click', function (e) {
+                if (window.matchMedia("(hover: none)").matches) {
+                    // Check if the click target is NOT inside a reason-card
+                    if (!e.target.closest('.reason-card')) {
+                        // Remove flipped class from all cards
+                        document.querySelectorAll('.reason-card.flipped').forEach(card => {
+                            card.classList.remove('flipped');
+                        });
+                    }
+                }
             });
         </script>
 
@@ -1919,7 +1940,7 @@
                     </p>
                     <div class="cta__divider">
                         <div class="cta__contact-links">
-                            <button class="btn btn--white">Contact Us</button>
+                            <button class="btn btn--white" href="mailto:fintechaicertificate@aub.edu.lb">Contact Us</button>
                         </div>
                     </div>
                 </div>
