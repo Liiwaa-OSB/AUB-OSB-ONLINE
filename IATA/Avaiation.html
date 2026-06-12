@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aviation Management Certificate | AUB OSB</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    /* ---------- DESIGN SYSTEM ---------- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: #ffffff;
+      color: #1a1a1a;
+      line-height: 1.5;
+      scroll-behavior: smooth;
+    }
+
+    :root {
+      --color-primary: #840132;
+      --color-primary-dark: #5e0e24;
+      --color-primary-light: #a11b48;
+      --color-gray-100: #f8f9fa;
+      --color-gray-200: #e9ecef;
+      --color-gray-300: #dee2e6;
+      --color-gray-600: #6c757d;
+      --color-gray-800: #343a40;
+      --color-black: #121212;
+      --shadow-sm: 0 10px 25px -5px rgba(0, 0, 0, 0.02), 0 4px 6px -2px rgba(0, 0, 0, 0.02);
+      --shadow-md: 0 20px 25px -12px rgba(0, 0, 0, 0.05);
+      --radius-lg: 24px;
+      --radius-md: 16px;
+      --radius-sm: 8px;
+      --container-max: 1280px;
+      --transition: all 0.25s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+    }
+
+    .container {
+      max-width: var(--container-max);
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* reveal animations */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      font-weight: 600;
+      font-size: 0.95rem;
+      padding: 0.8rem 2rem;
+      border-radius: 40px;
+      text-decoration: none;
+      transition: var(--transition);
+      cursor: pointer;
+      border: none;
+      background: transparent;
+    }
+    .btn-primary {
+      background: var(--color-primary);
+      color: white;
+      box-shadow: 0 2px 8px rgba(132, 1, 50, 0.2);
+    }
+    .btn-primary:hover {
+      background: var(--color-primary-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(132, 1, 50, 0.25);
+    }
+    .btn-outline {
+      border: 1.5px solid var(--color-primary);
+      color: var(--color-primary);
+      background: transparent;
+    }
+    .btn-outline:hover {
+      background: var(--color-primary);
+      color: white;
+      transform: translateY(-2px);
+    }
+    .btn-light {
+      background: rgba(255,255,255,0.12);
+      backdrop-filter: blur(4px);
+      color: white;
+      border: 1px solid rgba(255,255,255,0.25);
+    }
+    .btn-light:hover {
+      background: rgba(255,255,255,0.25);
+      transform: translateY(-2px);
+    }
+
+    /* sections */
+    .section {
+      padding: 5rem 0;
+    }
+    .section-alt {
+      background: var(--color-gray-100);
+    }
+    .section-title {
+      font-size: 2.2rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      color: var(--color-primary-dark);
+      margin-bottom: 2rem;
+      position: relative;
+    }
+    .section-title:after {
+      content: '';
+      position: absolute;
+      bottom: -12px;
+      left: 0;
+      width: 60px;
+      height: 3px;
+      background: var(--color-primary);
+      border-radius: 4px;
+    }
+    .text-center .section-title:after {
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    /* hero */
+    .hero {
+      background: linear-gradient(105deg, #0a0a0a 0%, #1a1a1c 100%);
+      padding: 5rem 0 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -30%;
+      right: -10%;
+      width: 60%;
+      height: 160%;
+      background: radial-gradient(circle, rgba(132,1,50,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero__content {
+      max-width: 680px;
+      color: white;
+      position: relative;
+      z-index: 2;
+    }
+    .hero__label {
+      font-size: 0.85rem;
+      letter-spacing: 3px;
+      font-weight: 500;
+      color: rgba(255,255,255,0.65);
+      margin-bottom: 1rem;
+    }
+    .hero__title {
+      font-size: 3.2rem;
+      font-weight: 800;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+    }
+    .hero__sub {
+      font-size: 1.2rem;
+      color: var(--color-primary-light);
+      font-weight: 500;
+      margin: 0.75rem 0 1rem;
+    }
+    .hero__desc {
+      font-size: 1.05rem;
+      opacity: 0.85;
+      margin: 1rem 0 2rem;
+    }
+    .hero__buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    /* info bar (cards row) */
+    .info-cards {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+      margin-top: -2.5rem;
+      position: relative;
+      z-index: 12;
+    }
+    .info-card {
+      background: white;
+      border-radius: var(--radius-md);
+      padding: 1.4rem 1rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      box-shadow: var(--shadow-md);
+      border: 1px solid var(--color-gray-200);
+      transition: var(--transition);
+    }
+    .info-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--color-primary-light);
+    }
+    .info-icon {
+      color: var(--color-primary);
+      flex-shrink: 0;
+    }
+    .info-label {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      font-weight: 600;
+      color: var(--color-gray-600);
+      letter-spacing: 0.03em;
+    }
+    .info-value {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--color-primary-dark);
+    }
+    @media (max-width: 1000px) {
+      .info-cards { grid-template-columns: repeat(2,1fr); }
+    }
+    @media (max-width: 640px) {
+      .info-cards { grid-template-columns: 1fr; }
+      .hero__title { font-size: 2.4rem; }
+    }
+
+    /* statistics row */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4,1fr);
+      gap: 1.5rem;
+      margin: 2rem 0 1rem;
+    }
+    .stat-block {
+      background: white;
+      padding: 1.5rem;
+      border-radius: var(--radius-md);
+      text-align: center;
+      border: 1px solid var(--color-gray-200);
+      transition: var(--transition);
+    }
+    .stat-block:hover {
+      border-color: var(--color-primary);
+      transform: translateY(-3px);
+    }
+    .stat-number {
+      font-size: 2.1rem;
+      font-weight: 800;
+      color: var(--color-primary);
+    }
+    .stat-desc {
+      font-size: 0.85rem;
+      color: var(--color-gray-600);
+      margin-top: 0.5rem;
+    }
+
+    /* two col layout */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+    .img-placeholder {
+      background: var(--color-gray-200);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      min-height: 320px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #e2e6ea;
+    }
+    .img-placeholder img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* course table style */
+    .course-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: white;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+    }
+    .course-table th, .course-table td {
+      padding: 1rem 1.25rem;
+      text-align: left;
+      border-bottom: 1px solid var(--color-gray-200);
+    }
+    .course-table th {
+      background: var(--color-gray-100);
+      font-weight: 700;
+      color: var(--color-primary-dark);
+    }
+    .course-table tr:last-child td {
+      border-bottom: none;
+    }
+    .badge {
+      background: #f3e9ed;
+      color: var(--color-primary-dark);
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 0.2rem 0.7rem;
+      border-radius: 30px;
+      display: inline-block;
+    }
+    @media (max-width: 768px) {
+      .course-table, .course-table tbody, .course-table tr, .course-table td {
+        display: block;
+      }
+      .course-table thead { display: none; }
+      .course-table tr { margin-bottom: 1rem; border: 1px solid var(--color-gray-200); border-radius: var(--radius-sm); }
+      .course-table td { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--color-gray-200); }
+      .course-table td:before { content: attr(data-label); font-weight: 700; width: 40%; }
+    }
+
+    /* USP cards */
+    .usp-grid {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 2rem;
+      margin-top: 1rem;
+    }
+    .usp-item {
+      background: white;
+      border-radius: var(--radius-md);
+      padding: 2rem 1.5rem;
+      text-align: center;
+      border: 1px solid var(--color-gray-200);
+      transition: var(--transition);
+    }
+    .usp-item:hover {
+      transform: translateY(-8px);
+      border-color: var(--color-primary);
+      box-shadow: var(--shadow-md);
+    }
+    .usp-icon {
+      color: var(--color-primary);
+      margin-bottom: 1.2rem;
+    }
+
+    /* target audience columns */
+    .audience-grid {
+      display: grid;
+      grid-template-columns: repeat(2,1fr);
+      gap: 2rem;
+    }
+    .audience-list {
+      list-style: none;
+      padding: 0;
+    }
+    .audience-list li {
+      margin-bottom: 0.75rem;
+      padding-left: 1.5rem;
+      position: relative;
+    }
+    .audience-list li:before {
+      content: "—";
+      position: absolute;
+      left: 0;
+      color: var(--color-primary);
+      font-weight: 600;
+    }
+    .target-market {
+      margin-top: 1.5rem;
+      background: var(--color-gray-100);
+      padding: 1rem 1.5rem;
+      border-radius: var(--radius-md);
+      border-left: 3px solid var(--color-primary);
+    }
+
+    /* instructors grid */
+    .instructor-grid {
+      display: grid;
+      grid-template-columns: repeat(2,1fr);
+      gap: 2rem;
+    }
+    .instructor-card {
+      background: white;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      border: 1px solid var(--color-gray-200);
+      transition: var(--transition);
+    }
+    .instructor-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+    }
+    .instructor-img {
+      height: 260px;
+      background: var(--color-gray-200);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      color: var(--color-gray-600);
+    }
+    .instructor-info {
+      padding: 1.5rem;
+    }
+    .instructor-name {
+      font-size: 1.3rem;
+      font-weight: 700;
+    }
+    .instructor-title {
+      color: var(--color-primary);
+      font-weight: 500;
+      font-size: 0.85rem;
+      margin: 0.25rem 0 0.75rem;
+    }
+    .instructor-bio {
+      font-size: 0.9rem;
+      color: var(--color-gray-800);
+      line-height: 1.5;
+    }
+
+    /* pnl summary */
+    .pnl-summary {
+      background: white;
+      border-radius: var(--radius-md);
+      padding: 1.8rem;
+      border: 1px solid var(--color-gray-200);
+    }
+
+    /* cta */
+    .cta-block {
+      background: linear-gradient(95deg, #111 0%, #1f1b1d 100%);
+      text-align: center;
+      padding: 3.5rem 2rem;
+      border-radius: var(--radius-lg);
+      color: white;
+    }
+
+    @media (max-width: 900px) {
+      .two-col, .usp-grid, .instructor-grid, .audience-grid {
+        grid-template-columns: 1fr;
+      }
+      .stats-grid {
+        grid-template-columns: repeat(2,1fr);
+      }
+    }
+    hr {
+      border: none;
+      border-top: 1px solid var(--color-gray-200);
+      margin: 1rem 0;
+    }
+  </style>
+</head>
+<body>
+<main>
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero__content reveal">
+        <div class="hero__label">Professional Certificate</div>
+        <h1 class="hero__title">Aviation Management</h1>
+        <div class="hero__sub">In Partnership with IATA | AUB OSB</div>
+        <p class="hero__desc">Gain industry-recognized credentials and strategic expertise to lead in the fast-growing aviation sector. Combines academic rigor with IATA-certified training.</p>
+        <div class="hero__buttons">
+          <button class="btn btn-primary">Register Interest</button>
+          <button class="btn btn-outline">Download Brochure</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Info Cards -->
+  <div class="container reveal">
+    <div class="info-cards">
+      <div class="info-card"><i data-lucide="calendar" width="28" class="info-icon"></i><div><div class="info-label">Launch Date</div><div class="info-value">September 2026</div></div></div>
+      <div class="info-card"><i data-lucide="clock" width="28" class="info-icon"></i><div><div class="info-label">Duration</div><div class="info-value">8 months</div></div></div>
+      <div class="info-card"><i data-lucide="map-pin" width="28" class="info-icon"></i><div><div class="info-label">Format</div><div class="info-value">In-person</div><div class="info-label">Once per week after 5PM</div></div></div>
+      <div class="info-card"><i data-lucide="dollar-sign" width="28" class="info-icon"></i><div><div class="info-label">Tuition</div><div class="info-value">$4,800</div><div class="info-label">Early bird & alumni discounts</div></div></div>
+    </div>
+  </div>
+
+  <!-- Market Research Section -->
+  <section class="section">
+    <div class="container">
+      <div class="reveal"><h2 class="section-title">Market Research & Findings</h2></div>
+      <div class="two-col">
+        <div class="reveal">
+          <p style="margin-bottom:1rem;">The global aviation sector is expanding steadily, with <strong>4.3% annual growth</strong> projected over 20 years. IATA forecasts 2025: air travel demand +5.8% (RPK), air cargo +5.5%.</p>
+          <p style="margin-bottom:1rem;">Regional Trends: Middle East (MENA) grows at <strong>6.4%</strong> above global average. Asia-Pacific: ~9%, Europe ~6%.</p>
+          <p>Critical skill gaps exist in airport & airline operations, safety/security management, cargo logistics, and aviation policy. Saudi Arabia’s Vision 2030 targets training 1,000+ aviation professionals.</p>
+        </div>
+        <div class="img-placeholder reveal">
+          <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='400' viewBox='0 0 600 400'%3E%3Crect width='600' height='400' fill='%232d2f31'/%3E%3Ctext x='50%25' y='50%25' fill='%23ffffff' font-size='18' text-anchor='middle' font-family='monospace'%3EAviation Growth Chart%3C/text%3E%3C/svg%3E" alt="market trend placeholder">
+        </div>
+      </div>
+      <div class="stats-grid reveal">
+        <div class="stat-block"><div class="stat-number">+6.4%</div><div class="stat-desc">MENA air traffic growth</div></div>
+        <div class="stat-block"><div class="stat-number">$75B</div><div class="stat-desc">Saudi aviation GDP by 2030</div></div>
+        <div class="stat-block"><div class="stat-number">1,000+</div><div class="stat-desc">Professionals to be trained (KSA)</div></div>
+        <div class="stat-block"><div class="stat-number">+5.8%</div><div class="stat-desc">Global passenger demand 2025</div></div>
+      </div>
+      <div class="reveal" style="background:var(--color-gray-100); padding:1.5rem; border-radius:var(--radius-md); margin-top:1rem;">
+        <p><strong>Key Takeaway:</strong> Lebanon lacks affordable, practical, and accredited aviation programs. There is a clear need to develop scalable training, industry-aligned curricula, and flexible models. Partnership IATA + AUB combines academic rigor and practical training, positioning Lebanon as a regional hub.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Program Description & Learning Objectives -->
+  <section class="section section-alt">
+    <div class="container">
+      <div class="reveal"><h2 class="section-title">Program Description</h2></div>
+      <div class="two-col">
+        <div class="reveal">
+          <p>The program provides essential knowledge and practical skills required to succeed in aviation management, safety, and operations, along with industry-recognized credentials. Integrated content in aviation operations, safety & security, airline and airport management through theory and real-world applications.</p>
+          <p>Combining IATA-certified training with AUB academic expertise, the program delivers a practice-oriented learning experience that prepares participants for supervisory and leadership roles while supporting sustainable growth of the regional aviation sector.</p>
+        </div>
+        <div class="img-placeholder reveal">
+          <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='400' viewBox='0 0 600 400'%3E%3Crect width='600' height='400' fill='%233a3f44'/%3E%3Ctext x='50%25' y='50%25' fill='%23ffffff' font-size='18' text-anchor='middle'%3EAirport Management%3C/text%3E%3C/svg%3E" alt="aviation management visual">
+        </div>
+      </div>
+      <div class="reveal" style="margin-top:2rem;">
+        <h3 style="font-size:1.4rem; font-weight:700; margin-bottom:1rem;">Learning Objectives & Outcomes</h3>
+        <ul style="display:grid; grid-template-columns:repeat(2,1fr); gap:0.75rem 1.5rem; margin-top:0.5rem;">
+          <li>Develop understanding of safety, security, and operational frameworks ensuring global regulatory compliance.</li>
+          <li>Apply safety and security protocols to mitigate risks and enhance operational safety.</li>
+          <li>Analyze and implement airline revenue optimization strategies: cost control, financial management, pricing.</li>
+          <li>Evaluate airport and airline management including HR, sustainability, crisis management.</li>
+          <li>Utilize industry data and analytics for informed managerial decisions.</li>
+          <li>Navigate complexities of air transport industry and international aviation law.</li>
+          <li>Communicate effectively with stakeholders: airlines, airports, regulators.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Curriculum & Structure -->
+  <section class="section">
+    <div class="container">
+      <div class="reveal"><h2 class="section-title">Program Curriculum & Structure</h2></div>
+      <div class="reveal">
+        <p style="margin-bottom:1.5rem;"><strong>Format:</strong> In-person, interactive lectures, case studies, simulations. <strong>Total credits:</strong> 12 credits (4 courses). <strong>Certification:</strong> Certificate in Aviation Management + IATA certifications.</p>
+        <table class="course-table">
+          <thead><tr><th>Course</th><th>Credits</th><th>Duration</th><th>Partner</th></tr>
+          </thead>
+          <tbody>
+            <tr><td data-label="Course">Aviation & Airport Management</td><td data-label="Credits">4 credits</td><td data-label="Duration">3 months</td><td data-label="Partner">AUB</td></tr>
+            <tr><td data-label="Course">Aviation Safety Fundamentals</td><td data-label="Credits">2.5 credits</td><td data-label="Duration">1.5 months</td><td data-label="Partner">IATA</td></tr>
+            <tr><td data-label="Course">Airline Revenue Optimization</td><td data-label="Credits">3 credits</td><td data-label="Duration">2 months</td><td data-label="Partner">AUB</td></tr>
+            <tr><td data-label="Course">Aviation Security Awareness</td><td data-label="Credits">2.5 credits</td><td data-label="Duration">1.5 months</td><td data-label="Partner">IATA</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="reveal" style="margin-top:2rem;">
+        <h3 style="font-weight:700; margin-bottom:0.5rem;">Course Descriptions</h3>
+        <div style="display:grid; gap:1rem; margin-top:1rem;">
+          <div><span class="badge">AUB</span> <strong>Aviation & Airport Management:</strong> Airline operations, airport planning, aviation law, HR, sustainability, crisis management.</div>
+          <div><span class="badge">IATA</span> <strong>Aviation Security Awareness:</strong> Security regulations, industry threats, access control, response measures.</div>
+          <div><span class="badge">AUB</span> <strong>Airline Revenue Optimization:</strong> Financial management, pricing strategies, cost control, revenue management techniques.</div>
+          <div><span class="badge">IATA</span> <strong>Aviation Safety Fundamentals:</strong> Safety Management Systems (SMS), risk assessment, human factors, safety culture.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Unique Selling Points -->
+  <section class="section section-alt">
+    <div class="container">
+      <div class="reveal text-center"><h2 class="section-title" style="text-align:center;">Unique Selling Points</h2></div>
+      <div class="usp-grid reveal">
+        <div class="usp-item"><i data-lucide="plane-takeoff" width="44" class="usp-icon"></i><h3 class="usp-title">Hands-on IATA Training</h3><p>Gain exposure to real aviation operations through industry-aligned IATA training.</p></div>
+        <div class="usp-item"><i data-lucide="bar-chart-2" width="44" class="usp-icon"></i><h3 class="usp-title">Strategic Skills</h3><p>Develop airline & airport management skills aligned with global aviation standards.</p></div>
+        <div class="usp-item"><i data-lucide="globe" width="44" class="usp-icon"></i><h3 class="usp-title">MENA-focused Employability</h3><p>Curriculum designed to meet current and future aviation industry demands in the MENA region.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Target Audience -->
+  <section class="section">
+    <div class="container">
+      <div class="reveal"><h2 class="section-title">Target Audience</h2></div>
+      <div class="audience-grid">
+        <div class="reveal">
+          <ul class="audience-list">
+            <li>Aviation professionals already working in the industry</li>
+            <li>Individuals aiming for leadership roles within aviation companies</li>
+            <li>Professionals involved in compliance with safety & security regulations</li>
+            <li>Those with backgrounds in aviation, transportation, business, or engineering</li>
+            <li>Mid-career professionals managing operations, safety, revenue in airports & airlines</li>
+          </ul>
+        </div>
+        <div class="reveal">
+          <div class="target-market">
+            <strong>Target Market</strong><br>Lebanon, MENA, and GCC countries: UAE, KSA, Egypt, Qatar, Oman, Bahrain, Kuwait, Jordan.
+          </div>
+          <div class="img-placeholder" style="margin-top:1.5rem; height:180px;">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='200' viewBox='0 0 400 200'%3E%3Crect width='400' height='200' fill='%23444'/%3E%3Ctext x='50%25' y='50%25' fill='white' text-anchor='middle'%3EAviation Professionals%3C/text%3E%3C/svg%3E" alt="target audience placeholder">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Instructors Section (exact from PDF) -->
+  <section class="section section-alt">
+    <div class="container">
+      <div class="reveal"><h2 class="section-title">Certificate Instructors</h2></div>
+      <div class="instructor-grid">
+        <div class="instructor-card"><div class="instructor-img"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='260' viewBox='0 0 400 260'%3E%3Crect width='400' height='260' fill='%23555'/%3E%3Ctext x='50%25' y='50%25' fill='white'%3ECaptain%3C/text%3E%3C/svg%3E" style="width:100%; height:100%; object-fit:cover;" alt="Captain Mazen"></div><div class="instructor-info"><div class="instructor-name">Captain Mazen Sammak</div><div class="instructor-title">High Diploma in Public Law</div><div class="instructor-bio">Licensed commercial pilot with over 20 years of aviation experience, senior executive expertise in airline operations, regulatory compliance (ICAO, IATA, EASA). Held roles as CFO/COO, led restructuring and operational turnarounds across Africa & Middle East.</div></div></div>
+        <div class="instructor-card"><div class="instructor-img"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='260' viewBox='0 0 400 260'%3E%3Crect width='400' height='260' fill='%23555'/%3E%3Ctext x='50%25' y='50%25' fill='white'%3EDr. Aziz%3C/text%3E%3C/svg%3E" style="width:100%; height:100%; object-fit:cover;"></div><div class="instructor-info"><div class="instructor-name">Captain Mohammed Aziz, Ph.D.</div><div class="instructor-title">Chairman-Director General, Lebanese Civil Aviation Authority</div><div class="instructor-bio">Former MEA senior pilot, ICAO auditor, IATA instructor. Extensive experience in aviation law, safety, security, and international regulations. Holds numerous awards and has contributed to ICAO panels.</div></div></div>
+        <div class="instructor-card"><div class="instructor-img"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='260' viewBox='0 0 400 260'%3E%3Crect width='400' height='260' fill='%23555'/%3E%3Ctext x='50%25' y='50%25' fill='white'%3ERyan Hijazi%3C/text%3E%3C/svg%3E" style="width:100%; height:100%; object-fit:cover;"></div><div class="instructor-info"><div class="instructor-name">Ryan Hijazi, MSc Finance</div><div class="instructor-title">Senior Finance & Aviation Consultant</div><div class="instructor-bio">LSE graduate with 15+ years in financial advisory, risk management, aviation finance. Worked with Deloitte, supported airline restructuring and sustainability audits for London Luton Airport.</div></div></div>
+        <div class="instructor-card"><div class="instructor-img"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='260' viewBox='0 0 400 260'%3E%3Crect width='400' height='260' fill='%23555'/%3E%3Ctext x='50%25' y='50%25' fill='white'%3EIsis%20Kamareddine%3C/text%3E%3C/svg%3E" style="width:100%; height:100%; object-fit:cover;"></div><div class="instructor-info"><div class="instructor-name">Isis Kamareddine, MBA</div><div class="instructor-title">Quality Lead Auditor, MEA - SMS Expert</div><div class="instructor-bio">Over a decade in safety management, quality auditing, IOSA pre-audits, ICAO TRAINAIR PLUS course developer. Specialized in technology adoption and safety systems.</div></div></div>
+        <div class="instructor-card"><div class="instructor-img"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='260' viewBox='0 0 400 260'%3E%3Crect width='400' height='260' fill='%23555'/%3E%3Ctext x='50%25' y='50%25' fill='white'%3EMohammad%20Jammoul%3C/text%3E%3C/svg%3E" style="width:100%; height:100%; object-fit:cover;"></div><div class="instructor-info"><div class="instructor-name">Mohammad Jammoul, MA in Law</div><div class="instructor-title">ICAO AVSEC Instructor, Certified Quality Auditor</div><div class="instructor-bio">13+ years at MEA, expert in ISAGO, IOSA, ISO 19011. Leads aviation security programs and quality audits, driving continuous improvement and regulatory compliance.</div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Program P&L & Competitor Insights -->
+  <section class="section">
+    <div class="container">
+      <div class="reveal"><h2 class="section-title">Financial Outlook & Market Position</h2></div>
+      <div class="two-col">
+        <div class="pnl-summary">
+          <p><strong>Program P&L Statement</strong></p>
+          <ul style="margin-top:0.75rem; list-style:none;">
+            <li>Year 1: Gross tuition ~$74.9K, Net revenue ~$2.8K</li>
+            <li>Year 2: Gross tuition ~$100K, Net revenue ~$7.4K</li>
+            <li>Year 3 onward: Gross ~$100K, Net ~$16.7K–$17.7K annually</li>
+          </ul>
+          <hr>
+          <p><strong>Competitive Edge:</strong> One of the first programs in MENA region combining IATA-certified courses with university-led modules. Affordable, career-focused alternative to expensive full degrees or short operational trainings.</p>
+        </div>
+        <div class="img-placeholder">
+          <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='300' viewBox='0 0 600 300'%3E%3Crect width='600' height='300' fill='%23333'/%3E%3Ctext x='50%25' y='50%25' fill='white' text-anchor='middle'%3EIATA + AUB Partnership%3C/text%3E%3C/svg%3E" alt="Partnership visual">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Conclusion & CTA -->
+  <section class="section">
+    <div class="container">
+      <div class="cta-block reveal">
+        <h2 style="font-size: 1.8rem; margin-bottom:1rem;">Become a Leader in Aviation Management</h2>
+        <p style="max-width:600px; margin:0 auto 1.5rem;">Being one of the first programs of its kind in the MENA region, this Aviation Management Diploma positions you at the forefront of aviation education with IATA credentials and AUB academic excellence.</p>
+        <div style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap;">
+          <button class="btn btn-primary">Request Information</button>
+          <button class="btn btn-outline" style="background:white; color:var(--color-primary);">Contact OSB Online Team</button>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<script>
+  lucide.createIcons();
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: "0px 0px -30px 0px" });
+  reveals.forEach(el => observer.observe(el));
+
+  // dummy button alerts (professional)
+  document.querySelectorAll('.btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      alert('Registration and inquiry system ready. Contact OSB Online for enrollment details.');
+    });
+  });
+</script>
+</body>
+</html>
