@@ -7,6 +7,11 @@
   <title>Aviation Management Certificate | AUB OSB</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="css/menu.css" />
+  <link rel="stylesheet" href="css/footer.css" />
+  <script src="./js/main.js" defer></script>
+  <script src="./js/menu.js" defer></script>
+  <script src="./js/carousel.js" defer></script>
   <link
     href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap"
     rel="stylesheet" />
@@ -136,29 +141,120 @@
     }
 
     /* Hero */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #ffffff;
+      color: #1a1a1a;
+    }
+
+    /* ========== HERO with auto-sliding background ========== */
     .hero {
-      background: linear-gradient(105deg, #0a0a0a 0%, #1a1a1c 100%);
-      padding: 4rem 0 3.5rem;
       position: relative;
+      width: 100%;
+      min-height: 585px;
+      /* adjust as needed */
+      display: flex;
+      align-items: center;
       overflow: hidden;
+      background: #0a0a0a;
+      /* fallback */
     }
 
-    .hero::before {
-      content: '';
+    /* ---- slides container (absolute, full bleed) ---- */
+    .hero-slides {
       position: absolute;
-      top: -30%;
-      right: -10%;
-      width: 60%;
-      height: 160%;
-      background: radial-gradient(circle, rgba(132, 1, 50, 0.12) 0%, transparent 70%);
-      pointer-events: none;
+      inset: 0;
+      z-index: 0;
+      display: flex;
+      width: 200%;
+      /* 2 images => 200% width */
+      animation: slideShow 12s infinite ease-in-out;
+      will-change: transform;
     }
 
+    .hero-slide {
+      flex: 0 0 50%;
+      /* each slide takes half of container */
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    /* slide 1 – dark overlay built into gradient, or use a pseudo */
+    .hero-slide-1 {
+      background-image:
+        linear-gradient(105deg, rgba(10, 10, 10, 0.9) 0%, rgba(20, 20, 22, 0.1) 100%),
+        url("./images/AUB-OSB-Avitation-Banner-1.jpg");
+      background-size: cover;
+    }
+
+    .hero-slide-2 {
+      background-image:
+        linear-gradient(105deg, rgba(10, 10, 10, 0.9) 0%, rgba(20, 20, 22, 0.1) 100%),
+        url("images/AUB-OSB-Avitation-Banner-2.jpg");
+
+      background-size: cover;
+    }
+
+    @media (max-width: 640px) {
+
+      /* slide 1 – dark overlay built into gradient, or use a pseudo */
+      .hero-slide-1 {
+        background-image:
+          linear-gradient(105deg, rgba(10, 10, 10, 0.6) 0%, rgba(20, 20, 22, 0.6) 100%),
+          url("./images/AUB-OSB-Avitation-Banner-1.jpg");
+      }
+
+      .hero-slide-2 {
+        background-image:
+          linear-gradient(105deg, rgba(10, 10, 10, 0.6) 0%, rgba(20, 20, 22, 0.6) 100%),
+          url("images/AUB-OSB-Avitation-Banner-2.jpg");
+      }
+    }
+
+    /* ---- keyframes: slide 0% → 100% (two images) ---- */
+    @keyframes slideShow {
+      0% {
+        transform: translateX(0%);
+      }
+
+      40% {
+        transform: translateX(0%);
+      }
+
+      /* hold first */
+      50% {
+        transform: translateX(-50%);
+      }
+
+      /* slide to second */
+      90% {
+        transform: translateX(-50%);
+      }
+
+      /* hold second */
+      100% {
+        transform: translateX(0%);
+      }
+
+      /* slide back */
+    }
+
+    /* ---- content on top of slides ---- */
     .hero__content {
-      max-width: 720px;
-      color: white;
       position: relative;
       z-index: 2;
+      color: white;
+      padding: 3rem 1.5rem;
+      margin: 0 auto;
+      width: 100%;
     }
 
     .hero__label {
@@ -166,8 +262,8 @@
       letter-spacing: 3px;
       font-weight: 500;
       color: rgba(255, 255, 255, 0.65);
-      margin-bottom: 0.75rem;
       text-transform: uppercase;
+      margin-bottom: 0.75rem;
     }
 
     .hero__title {
@@ -179,7 +275,8 @@
 
     .hero__sub {
       font-size: 1.2rem;
-      color: var(--color-primary-light);
+      color: #a11b48;
+      /* primary-light */
       font-weight: 500;
       margin: 0.5rem 0 1rem;
     }
@@ -195,6 +292,65 @@
       display: flex;
       flex-wrap: wrap;
       gap: 1rem;
+    }
+
+    @media (max-width: 480px) {
+      .hero__buttons .btn {
+        width: 210px;
+      }
+    }
+
+    /* buttons (same style as original) */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      font-weight: 600;
+      font-size: 0.95rem;
+      padding: 0.8rem 2rem;
+      border-radius: 40px;
+      text-decoration: none;
+      transition: all 0.25s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+      cursor: pointer;
+      border: none;
+      background: transparent;
+      font-family: inherit;
+    }
+
+    .btn-primary {
+      background: #840132;
+      color: white;
+      box-shadow: 0 2px 8px rgba(132, 1, 50, 0.2);
+    }
+
+    .btn-primary:hover {
+      background: #5e0e24;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(132, 1, 50, 0.25);
+    }
+
+    .btn-outline {
+      border: 1.5px solid rgba(255, 255, 255, 0.4);
+      color: white;
+      background: transparent;
+    }
+
+    .btn-outline:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: white;
+      transform: translateY(-2px);
+    }
+
+    /* small responsiveness */
+    @media (max-width: 640px) {
+      .hero__title {
+        font-size: 2.2rem;
+      }
+
+      .hero {
+        min-height: 460px;
+      }
     }
 
     /* Info cards row */
@@ -229,12 +385,21 @@
       flex-shrink: 0;
     }
 
-    .info-label {
+    .info-card .info-label {
       font-size: 0.65rem;
-      text-transform: uppercase;
+      /* text-transform: uppercase; */
       font-weight: 600;
       color: var(--color-gray-600);
       letter-spacing: 0.03em;
+    }
+
+    .detail-card .info-label {
+      font-size: 0.7rem;
+      /* text-transform: uppercase; */
+      font-weight: 600;
+      color: var(--color-gray-600);
+      letter-spacing: 0.03em;
+      margin-top: 0.5rem;
     }
 
     .info-value {
@@ -318,131 +483,252 @@
       line-height: 1.5;
     }
 
-    /* Carousel for Who Should Enroll – 3 slides per row, text left */
-    .carousel-wrap {
+    /* ===== CAROUSEL ===== */
+    .carousel {
       position: relative;
-      overflow: hidden;
-      border-radius: var(--radius-md);
-      background: transparent;
+      padding: 0 40px;
+      margin: 0 -10px;
     }
 
-    .carousel-track {
+    .carousel__container {
+      overflow: hidden;
+      border-radius: var(--radius-md);
+    }
+
+    .carousel__track {
       display: flex;
-      transition: transform 0.5s ease;
+      transition: transform 0.3s ease-out;
       will-change: transform;
     }
 
-    .carousel-slide {
+    .carousel__slide {
       flex: 0 0 33.333%;
-      padding: 0 0.75rem;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      text-align: left;
-      background: white;
-      border-radius: var(--radius-md);
-      border: 1px solid var(--color-gray-200);
-      box-shadow: var(--shadow-md);
-      padding: 1.5rem 1.5rem 1.8rem;
-      margin: 0.5rem 0;
-      min-height: 200px;
+      padding: 0 10px;
+      box-sizing: border-box;
+      margin-bottom: 1px;
     }
 
-    .carousel-slide .slide-icon {
-      width: 48px;
-      height: 48px;
-      background: var(--color-gray-100);
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--color-primary);
-      margin-bottom: 1rem;
-    }
-
-    .carousel-slide h4 {
-      font-size: 1.2rem;
-      font-weight: 700;
-      color: var(--color-primary-dark);
-      margin-bottom: 0.4rem;
-    }
-
-    .carousel-slide p {
-      font-size: 0.95rem;
-      color: var(--color-gray-800);
-      line-height: 1.5;
-    }
-
-    .carousel-btn {
+    /* Carousel buttons */
+    .carousel__btn {
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
-      background: rgba(255, 255, 255, 0.9);
+      background: white;
       border: 1px solid var(--color-gray-300);
-      border-radius: 40px;
+      border-radius: 50%;
       width: 44px;
       height: 44px;
       display: flex;
       align-items: center;
       justify-content: center;
       cursor: pointer;
-      z-index: 10;
       transition: var(--transition);
       color: var(--color-primary-dark);
-      font-size: 1.5rem;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+      font-size: 1.4rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      z-index: 10;
     }
 
-    .carousel-btn:hover {
-      background: white;
+    .carousel__btn:hover {
+      background: var(--color-primary);
+      color: white;
       border-color: var(--color-primary);
     }
 
-    .carousel-btn.prev {
-      left: 0.25rem;
+    .carousel__btn--prev {
+      left: 0;
     }
 
-    .carousel-btn.next {
-      right: 0.25rem;
+    .carousel__btn--next {
+      right: 0;
     }
 
-    .carousel-dots {
-      display: flex;
-      justify-content: center;
-      gap: 0.5rem;
-      margin-top: 1.2rem;
+    .carousel__btn:disabled {
+      opacity: 0.3;
+      cursor: not-allowed;
     }
 
-    .carousel-dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 20px;
-      background: var(--color-gray-300);
-      border: none;
-      cursor: pointer;
-      transition: var(--transition);
+    /* ===== PARTICIPANT CARD ===== */
+    .participant-card {
+      background: white;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      border: 1px solid var(--color-gray-200);
+      transition: border-color 0.3s ease;
+      height: 100%;
     }
 
-    .carousel-dot.active {
-      background: var(--color-primary);
-      width: 28px;
+    .participant-card:hover {
+      border-color: var(--color-primary);
     }
 
+    .participant-card__image {
+      width: 100%;
+      height: 200px;
+      overflow: hidden;
+      background: var(--color-gray-200);
+    }
+
+    .participant-card__image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s ease;
+    }
+
+    .participant-card:hover .participant-card__image img {
+      transform: scale(1.08);
+    }
+
+    .participant-card__content {
+      padding: 1.5rem 1.5rem 1.8rem;
+    }
+
+    .participant-card__title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--color-primary-dark);
+      margin-bottom: 0.5rem;
+    }
+
+    .participant-card__text {
+      font-size: 0.95rem;
+      color: var(--color-gray-800);
+      line-height: 1.5;
+    }
+
+    /* ===== RESPONSIVE ===== */
     @media (max-width: 992px) {
-      .carousel-slide {
+      .carousel__slide {
         flex: 0 0 50%;
+      }
+
+      .carousel {
+        padding: 0 30px;
       }
     }
 
     @media (max-width: 640px) {
-      .carousel-slide {
+      .carousel {
+        padding: 0 20px;
+      }
+
+      .carousel__slide {
         flex: 0 0 100%;
       }
 
-      .carousel-btn {
+      .carousel__btn {
         width: 36px;
         height: 36px;
-        font-size: 1.2rem;
+        font-size: 1.1rem;
+      }
+
+      .participant-card__image {
+        height: 160px;
+      }
+
+      .participant-card__content {
+        padding: 1rem 1rem 1.4rem;
+      }
+    }
+
+    /* ===== REQUIREMENTS GRID ===== */
+    .requirements-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2.5rem;
+      margin-top: 2.5rem;
+      align-items: center;
+      background: white;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      border: 1px solid var(--color-gray-200);
+    }
+
+    .requirements-grid__image {
+      height: 100%;
+      min-height: 280px;
+      overflow: hidden;
+      background: var(--color-gray-200);
+    }
+
+    .requirements-grid__image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .requirements-grid__content {
+      padding: 2rem 2rem 2rem 0;
+    }
+
+    .requirements-grid__title {
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--color-primary-dark);
+      margin-bottom: 1.5rem;
+      position: relative;
+    }
+
+    .requirements-grid__title:after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      width: 50px;
+      height: 3px;
+      background: var(--color-primary);
+      border-radius: 4px;
+    }
+
+    .requirements-grid__list {
+      list-style: none;
+      padding: 0;
+      margin: 1.5rem 0 0;
+    }
+
+    .requirements-grid__list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      padding: 0.75rem 0;
+      border-bottom: 1px solid var(--color-gray-200);
+      font-size: 0.95rem;
+      color: var(--color-gray-800);
+      line-height: 1.5;
+    }
+
+    .requirements-grid__list li:last-child {
+      border-bottom: none;
+    }
+
+    .requirements-grid__list li:before {
+      content: "✓";
+      color: var(--color-primary);
+      font-weight: 700;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+      margin-top: 0.1rem;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 768px) {
+      .requirements-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .requirements-grid__image {
+        min-height: 200px;
+      }
+
+      .requirements-grid__content {
+        padding: 1.5rem;
+      }
+
+      .requirements-grid__title {
+        font-size: 1.3rem;
       }
     }
 
@@ -498,15 +784,15 @@
       margin-bottom: 0.75rem;
     }
 
-    .detail-card .number {
-      font-size: 2.2rem;
+    .detail-card .info-value {
+      font-size: 1.6rem;
       font-weight: 800;
       color: var(--color-primary-dark);
       line-height: 1.2;
     }
 
     .detail-card .label {
-      font-size: 0.9rem;
+      font-size: 1.2rem;
       color: var(--color-gray-600);
       margin-top: 0.2rem;
       font-weight: 500;
@@ -700,11 +986,549 @@
 </head>
 
 <body>
+  <div class="nav">
+    <!-- UTILITY BAR (desktop only) -->
+    <div class="nav-utility">
+      <div class="nav-utility-container">
+        <a href="/Pages/AZ.aspx" class="nav-utility-link">A - Z</a><span class="nav-utility-separator">|</span>
+        <a href="/Search/Pages/People.aspx" class="nav-utility-link">Find People</a><span
+          class="nav-utility-separator">|</span>
+        <a href="https://aubmc.org.lb/" class="nav-utility-link" target="_blank">AUBMC</a><span
+          class="nav-utility-separator">|</span>
+        <a href="/libraries" class="nav-utility-link">Libraries</a><span class="nav-utility-separator">|</span>
+        <a href="/Employment" class="nav-utility-link">Jobs</a><span class="nav-utility-separator">|</span>
+        <a href="http://alumni.aub.edu.lb/s/1716/start.aspx?gid=2&pgid=61" class="nav-utility-link"
+          target="_blank">Alumni</a><span class="nav-utility-separator">|</span>
+        <a href="https://online.aub.edu.lb" class="nav-utility-link" target="_blank">AUB Online</a><span
+          class="nav-utility-separator">|</span>
+        <a href="https://www.aubmed.ac.cy/" class="nav-utility-link" target="_blank">AUB – Mediterraneo</a><span
+          class="nav-utility-separator">|</span>
+        <a href="https://myaubhealth.aubmc.org.lb/mychartprd/Authentication/Login" class="nav-utility-link"
+          target="_blank">Telehealth</a><span class="nav-utility-separator">|</span>
+        <a href="/advancement/Development/Pages/HowToMakeAGift.aspx" class="nav-utility-link">Give</a>
+      </div>
+    </div>
+
+    <!-- MAIN HEADER (logo + desktop mega + burger) -->
+    <div class="nav-main-header" id="mainHeader">
+      <div class="nav-main-container">
+        <div class="nav-logo">
+          <a href="https://www.aub.edu.lb/osb/Pages/default.aspx">
+            <img src="images/AUB+OSB-Merged-Logo-white.png" alt="AUB OSB Logo" />
+          </a>
+        </div>
+        <!-- Desktop mega menu (updated with full JSON structure) -->
+        <div class="nav-desktop">
+          <!-- About AUB -->
+          <div class="nav-item">
+            <button>
+              About AUB<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2">
+                <path d="m6 9 6 6 6-6" />
+              </svg>
+            </button>
+            <div class="nav-mega">
+              <h4>About AUB</h4>
+              <div class="nav-mega-grid">
+                <div class="nav-mega-column">
+                  <ul class="nav-mega-links">
+                    <li>
+                      <a href="/AboutUs/Pages/default.aspx">Overview</a>
+                    </li>
+                    <li>
+                      <a href="/aboutus/Pages/history.aspx">History</a>
+                    </li>
+                    <li>
+                      <a href="/aboutus/Pages/mission.aspx">Mission and Vision</a>
+                    </li>
+                    <li>
+                      <a href="/aboutus/Pages/facts.aspx">Facts and Figures</a>
+                    </li>
+                    <li><a href="/President/oeo-titleix">Title IX</a></li>
+                  </ul>
+                </div>
+                <div class="nav-mega-column">
+                  <ul class="nav-mega-links">
+                    <li>
+                      <a href="/AboutUs/Pages/leadership.aspx">AUB Leadership</a>
+                    </li>
+                    <li>
+                      <a href="/president">Office of the President</a>
+                    </li>
+                    <li><a href="/nyo">New York Office</a></li>
+                    <li><a href="/maingate">The MainGate Magazine</a></li>
+                    <li>
+                      <a href="/advancement">Office of Advancement</a>
+                    </li>
+                  </ul>
+                </div>
+                <div class="nav-mega-column">
+                  <ul class="nav-mega-links">
+                    <li><a href="/aboutus/Pages/campus.aspx">Campus</a></li>
+                    <li>
+                      <a href="/aboutus/Pages/beirut-lb.aspx">About Beirut and Lebanon</a>
+                    </li>
+                    <li><a href="/accreditation">Accreditation</a></li>
+                    <li>
+                      <a href="https://150.aub.edu.lb/" target="_blank">AUB 150</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Academics -->
+          <div class="nav-item">
+            <button>
+              Academics<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2">
+                <path d="m6 9 6 6 6-6" />
+              </svg>
+            </button>
+            <div class="nav-mega">
+              <h4>ACADEMICS</h4>
+              <div class="nav-mega-grid">
+                <div class="nav-mega-column">
+                  <ul class="nav-mega-links">
+                    <li>
+                      <a href="/academics/Pages/faculties.aspx">Faculties</a>
+                    </li>
+                    <li>
+                      <a href="/Pages/AZ.aspx">Departments and Centers</a>
+                    </li>
+                    <li>
+                      <a href="/academics/pages/majors_programs.aspx">Majors and Programs</a>
+                    </li>
+                    <li>
+                      <a href="https://www-banner.aub.edu.lb/pls/weba/bwckctlg.p_disp_dyn_ctlg" target="_blank">Search
+                        for a Course</a>
+                    </li>
+                  </ul>
+                </div>
+                <div class="nav-mega-column">
+                  <ul class="nav-mega-links">
+                    <li>
+                      <a href="/theinstitute">Institute for Academic Innovation and
+                        Development</a>
+                    </li>
+                    <li><a href="/graduatecouncil">Graduate Council</a></li>
+                    <li>
+                      <a href="/generaleducation">General Education Program</a>
+                    </li>
+                    <li>
+                      <a href="/oip">Office of International Programs</a>
+                    </li>
+                  </ul>
+                </div>
+                <div class="nav-mega-column">
+                  <ul class="nav-mega-links">
+                    <li><a href="/provost">Office of the Provost</a></li>
+                    <li>
+                      <a href="/registrar">Office of the Registrar</a>
+                    </li>
+                    <li><a href="/libraries">Libraries</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Admissions -->
+          <div class="nav-item">
+            <button>
+              Admissions<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2">
+                <path d="m6 9 6 6 6-6" />
+              </svg>
+            </button>
+            <div class="nav-mega">
+              <h4>ADMISSIONS</h4>
+              <div class="nav-mega-grid">
+                <div class="nav-mega-column">
+                  <ul class="nav-mega-links">
+                    <li><a href="/admissions">Admissions</a></li>
+                    <li><a href="/faid">Financial Aid</a></li>
+                    <li>
+                      <a href="http://www.aub.edu.lb/admissions/Pages/TC/index.html" target="_blank">Tuition and Fees
+                        Calculator</a>
+                    </li>
+                    <li>
+                      <a href="https://www.aub.edu.lb/admissions/applications/Pages/SpecialVisiting.aspx"
+                        target="_blank">Visiting Student</a>
+                    </li>
+                  </ul>
+                </div>
+                <div class="nav-mega-column">
+                  <ul class="nav-mega-links">
+                    <li>
+                      <a href="/faid/Pages/Scholarships.aspx">Scholarships</a>
+                    </li>
+                    <li>
+                      <a href="/lead">LEAD scholarship opportunities</a>
+                    </li>
+                    <li><a href="/sao">Office of Student Affairs</a></li>
+                  </ul>
+                </div>
+                <div class="nav-mega-column">
+                  <ul class="nav-mega-links">
+                    <li>
+                      <a href="/academics/pages/majors_programs.aspx">Majors and Programs</a>
+                    </li>
+                    <li><a href="/graduatecouncil">Graduate Council</a></li>
+                    <li>
+                      <a href="/oip">Office of International Programs</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Research -->
+          <div class="nav-item">
+            <button>
+              Research<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2">
+                <path d="m6 9 6 6 6-6" />
+              </svg>
+            </button>
+            <div class="nav-mega">
+              <h4>Research</h4>
+              <div class="nav-mega-grid">
+                <div class="nav-mega-column">
+                  <ul class="nav-mega-links">
+                    <li><a href="/research">Office of Research</a></li>
+                    <li>
+                      <a href="/Pages/ResearchbyFaculty.aspx">Research by Faculty/School</a>
+                    </li>
+                    <li>
+                      <a href="/Pages/ResearchCenters.aspx">Interfaculty Research Centers</a>
+                    </li>
+                    <li><a href="/urb">University Research Board</a></li>
+                  </ul>
+                </div>
+                <div class="nav-mega-column">
+                  <ul class="nav-mega-links">
+                    <li>
+                      <a href="/Pages/ResearchSupport.aspx">Research Funding</a>
+                    </li>
+                    <li>
+                      <a href="/urb/Pages/Researchintegrity.aspx">Research Integrity</a>
+                    </li>
+                    <li>
+                      <a href="/irb">Human Research Protection Program / Institutional
+                        Review Board</a>
+                    </li>
+                  </ul>
+                </div>
+                <div class="nav-mega-column">
+                  <ul class="nav-mega-links">
+                    <li>
+                      <a href="/MRVP">Medical Research Volunteer Program</a>
+                    </li>
+                    <li>
+                      <a href="/provost/urvp">Undergraduate Research Volunteer Program</a>
+                    </li>
+                    <li>
+                      <a href="/articles/Pages/research.aspx">Research News</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Outreach -->
+          <div class="nav-item">
+            <button>
+              Outreach<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2">
+                <path d="m6 9 6 6 6-6" />
+              </svg>
+            </button>
+            <div class="nav-mega">
+              <h4>Outreach</h4>
+              <div class="nav-mega-grid">
+                <div class="nav-mega-column">
+                  <ul class="nav-mega-links">
+                    <li><a href="/CCE">Community Engagement</a></li>
+                    <li>
+                      <a href="/Neighborhood">Neighborhood Initiative</a>
+                    </li>
+                    <li>
+                      <a href="/natureconservation">Nature Conservation</a>
+                    </li>
+                    <li><a href="/seniors">University for Seniors</a></li>
+                  </ul>
+                </div>
+                <div class="nav-mega-column">
+                  <ul class="nav-mega-links">
+                    <li><a href="/ifi">Issam Fares Institute</a></li>
+                    <li>
+                      <a href="https://sites.aub.edu.lb/ipark/" target="_blank">iPark</a>
+                    </li>
+                    <li><a href="/k2p">Knowledge to Policy Center</a></li>
+                    <li>
+                      <a href="/masri_institute">The Munib and Angela Masri Institute of Energy
+                        and
+                        Natural Resources</a>
+                    </li>
+                  </ul>
+                </div>
+                <div class="nav-mega-column">
+                  <ul class="nav-mega-links">
+                    <li>
+                      <a href="https://www.aub.edu.lb/hub/Pages/default.aspx" target="_blank">AI
+                        Hub</a>
+                    </li>
+                    <li>
+                      <a href="/fafs/esdu">Environment and Sustainable Development</a>
+                    </li>
+                    <li>
+                      <a href="https://ghi.aub.edu.lb/" target="_blank">Global Health
+                        Institute</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Boldly Campaign -->
+          <div class="nav-item">
+            <button>
+              Boldly Campaign<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2">
+                <path d="m6 9 6 6 6-6" />
+              </svg>
+            </button>
+            <div class="nav-mega">
+              <h4>Boldly Campaign</h4>
+              <div class="nav-mega-grid">
+                <div class="nav-mega-column">
+                  <ul class="nav-mega-links">
+                    <li>
+                      <a href="http://boldly.aub.edu.lb/" target="_blank">Campaign Overview</a>
+                    </li>
+                    <li>
+                      <a href="http://boldly.aub.edu.lb/impact-stories/" target="_blank">Impact
+                        Stories</a>
+                    </li>
+                  </ul>
+                </div>
+                <div class="nav-mega-column">
+                  <ul class="nav-mega-links">
+                    <li>
+                      <a href="http://boldly.aub.edu.lb/campaign-objectives/" target="_blank">Campaign Objectives</a>
+                    </li>
+                    <li>
+                      <a href="http://boldly.aub.edu.lb/ways-to-support/" target="_blank">Ways to
+                        Support</a>
+                    </li>
+                  </ul>
+                </div>
+                <div class="nav-mega-column">
+                  <ul class="nav-mega-links">
+                    <li>
+                      <a href="http://boldly.aub.edu.lb/#funding-v2" target="_blank">Campaign
+                        Progress</a>
+                    </li>
+                    <li>
+                      <a href="https://secureca.imodules.com/s/1716/interior.aspx?sid=1716&gid=2&pgid=618&cid=2462"
+                        target="_blank">Join the Campaign</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button class="nav-mobile-btn" id="burgerBtn" aria-label="Menu">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+            <line x1="3" y1="12" x2="21" y2="12" />
+            <line x1="3" y1="6" x2="21" y2="6" />
+            <line x1="3" y1="18" x2="21" y2="18" />
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- OSB ROW (third level, becomes sticky) updated with provided nav-osb structure -->
+    <div class="nav-osb" id="osbRow">
+      <div class="nav-osb-container">
+        <div class="nav-osb-logo">
+          <a href="/"><img src="images/AUB+OSB-Merged-Logo-white.png" alt="AUB OSB Logo" /></a>
+        </div>
+        <div class="nav-osb-links">
+          <ul class="osb-nav">
+            <!-- About OSB with dropdown -->
+            <li class="osb-nav-item has-dropdown">
+              <a href="#" id="about-osb-link">About OSB</a>
+              <ul class="osb-dropdown">
+                <li>
+                  <a href="/osb/about/Pages/Meet-the-Dean.aspx" id="meet-the-dean">Meet the Dean</a>
+                </li>
+                <li>
+                  <a href="/osb/about/Pages/default.aspx" id="mission-and-vision">Mission And
+                    Vision</a>
+                </li>
+                <li>
+                  <a href="/osb/about/Pages/Olayan-.aspx" id="about-suliman-saleh-olayan">About
+                    Suliman Saleh Olayan</a>
+                </li>
+                <li>
+                  <a href="https://www.aub.edu.lb/osb/Pages/advisoryboard.aspx" target="_blank"
+                    id="international-advisory-board">International Advisory Board</a>
+                </li>
+                <li>
+                  <a href="/osb/about/Pages/Global-Recognition-.aspx" id="global-recognitions-labels">Global
+                    Recognitions & Labels</a>
+                </li>
+                <li>
+                  <a href="/osb/about/Pages/Governance.aspx" id="governance">Governance</a>
+                </li>
+                <li>
+                  <a href="/osb/about/Pages/recources.aspx" id="faculty-staff-resources">Faculty and
+                    Staff Resources</a>
+                </li>
+                <li>
+                  <a href="/osb/125/Pages/default.aspx" target="_blank" id="osb-125">OSB 125</a>
+                </li>
+                <li>
+                  <a href="https://sites.aub.edu.lb/osb2029/" target="_blank" id="osb-strategic-plan-2029">OSB Strategic
+                    Plan 2029</a>
+                </li>
+                <li>
+                  <a href="https://www.aub.edu.lb/osb/about/Pages/Employment.aspx" target="_blank"
+                    id="job-opportunities">Job Opportunities</a>
+                </li>
+              </ul>
+            </li>
+            <!-- Academic Programs with dropdown -->
+            <li class="osb-nav-item has-dropdown">
+              <a href="#" id="academic-programs-link">Academic Programs</a>
+              <ul class="osb-dropdown">
+                <li>
+                  <a href="/osb/UndergradProgram" target="_blank" id="undergraduate-program">Undergraduate Program</a>
+                </li>
+                <li>
+                  <a href="/osb/Pages/SpecializedMasters.aspx" target="_blank" id="specialized-masters">Specialized
+                    Masters</a>
+                </li>
+                <li>
+                  <a href="/osb/MBA" target="_blank" id="mba">MBA</a>
+                </li>
+                <li>
+                  <a href="/osb/OMBA/Pages/default.aspx" target="_blank" id="mba-online">MBA
+                    Online</a>
+                </li>
+                <li>
+                  <a href="/osb/EMBA" target="_blank" id="executive-mba">Executive MBA</a>
+                </li>
+              </ul>
+            </li>
+            <!-- Executive Education (external link + dropdown) -->
+            <li class="osb-nav-item">
+              <!-- lii replace href below -->
+              <!-- href="https://www.aub.edu.lb/osb/executiveeducation/Pages/default.aspx" -->
+              <a href="https://www.aub.edu.lb/osb/executiveeducation" target="_blank"
+                id="executive-education-link">Executive Education</a>
+            </li>
+            <!-- OSB Online with dropdown -->
+            <li class="osb-nav-item has-dropdown">
+              <a href="#" id="osb-online-link">OSB Online</a>
+              <ul class="osb-dropdown">
+                <li>
+                  <a href="https://www.aub.edu.lb/online/Entrepreneurship-Innovation-online-diploma/Pages/default.aspx"
+                    target="_blank" id="entrepreneurship-innovation-online-diploma">Entrepreneurship
+                    & Innovation Online
+                    Graduate
+                    Professional Diploma</a>
+                </li>
+                <li>
+                  <a href="https://www.aub.edu.lb/osb/online/combating-trade-based-financial-crime-certificate/Pages/default.aspx"
+                    target="_blank" id="combating-trade-based-financial-crime-certificate">Combating
+                    Trade-Based
+                    Financial Crime Online
+                    Certificate</a>
+                </li>
+                <li>
+                  <a href="https://www.aub.edu.lb/osb/online/strategic_branding/Pages/default.aspx" target="_blank"
+                    id="strategic-branding-digital-era-diploma">Strategic Branding
+                    in the Digital Era Online Diploma</a>
+                </li>
+                <li>
+                  <a href="https://www.aub.edu.lb/osb/online/investment-analysis-modern-portfolio-management/Pages/default.aspx"
+                    target="_blank" id="investment-analysis-modern-portfolio-management-diploma">Investment Analysis
+                    and
+                    Modern Portfolio Management
+                    Online Graduate Professional Diploma</a>
+                </li>
+              </ul>
+            </li>
+            <!-- Faculty -->
+            <li class="osb-nav-item">
+              <a href="/osb/Pages/Faculty.aspx" id="faculty">Faculty</a>
+            </li>
+            <!-- Research -->
+            <li class="osb-nav-item">
+              <a href="https://www.aub.edu.lb/osb/facultyresearch/Pages/default.aspx" target="_blank"
+                id="research">Research</a>
+            </li>
+            <!-- News -->
+            <li class="osb-nav-item">
+              <a href="https://www.aub.edu.lb/osb/news/Pages/default.aspx" id="news">News</a>
+            </li>
+            <!-- OSB Impacts -->
+            <li class="osb-nav-item">
+              <a href="https://www.aub.edu.lb/osb/impact/Pages/default.aspx" target="_blank" id="osb-impacts">OSB
+                Impacts</a>
+            </li>
+            <!-- "Recent" hidden item (present but not shown visually) -->
+            <li class="osb-nav-item" style="display: none">
+              <a href="/osb" id="recent">Recent</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="nav-mobile-overlay" id="mobileOverlay">
+    <div class="mobile-overlay-header">
+      <div class="mobile-logo">
+        <img src="images/AUB+OSB-Merged-Logo-white.png" alt="AUB" />
+      </div>
+      <button class="mobile-close-btn" id="closeOverlayBtn">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+          <line x1="18" y1="6" x2="6" y2="18" />
+          <line x1="6" y1="6" x2="18" y2="18" />
+        </svg>
+      </button>
+    </div>
+    <div class="mobile-menu-sections">
+      <div class="mobile-section">
+        <div class="mobile-section-title">Quick Links</div>
+        <div class="mobile-utility-grid" id="mobileUtilityGrid"></div>
+      </div>
+      <div class="mobile-section">
+        <div class="mobile-section-title">Main Navigation</div>
+        <div id="mobileMainNav"></div>
+      </div>
+      <div class="mobile-section">
+        <div class="mobile-section-title">OSB School</div>
+        <div id="mobileOsbNav"></div>
+      </div>
+    </div>
+  </div>
   <main>
     <!-- HERO -->
     <section class="hero">
-      <div class="container">
-        <div class="hero__content reveal">
+      <!-- background slides (2 images) -->
+      <div class="hero-slides">
+        <div class="hero-slide hero-slide-1"></div>
+        <div class="hero-slide hero-slide-2"></div>
+      </div>
+
+      <!-- static text content (stays same) -->
+      <div class="container"
+        style="width:100%; max-width:1280px; margin:0 auto; padding:0 1.5rem; position:relative; z-index:2;">
+        <div class="hero__content" style="padding:3rem 0;">
           <div class="hero__label">Professional Certificate</div>
           <h1 class="hero__title">Aviation Management</h1>
           <div class="hero__sub">In Partnership with IATA | AUB OSB</div>
@@ -713,12 +1537,23 @@
             and succeed.</p>
           <div class="hero__buttons">
             <button class="btn btn-primary">Register Interest</button>
-            <button class="btn btn-outline" style="border-color:rgba(255,255,255,0.4); color:white;">Download
-              Brochure</button>
+            <button class="btn btn-outline">Download Brochure</button>
           </div>
         </div>
       </div>
     </section>
+
+    <!-- (optional: lucide icons – just for demo) -->
+    <script>
+      if (typeof lucide !== 'undefined') lucide.createIcons();
+      // button alerts (optional)
+      document.querySelectorAll('.btn').forEach(btn => {
+        btn.addEventListener('click', function (e) {
+          e.preventDefault();
+          alert('Hero auto‑carousel — text stays fixed, images slide.');
+        });
+      });
+    </script>
 
     <!-- INFO CARDS -->
     <div class="container reveal">
@@ -739,14 +1574,14 @@
           <div>
             <div class="info-label">Format</div>
             <div class="info-value">In-person</div>
-            <div class="info-label" style="font-size:0.6rem;">Once per week after 5PM</div>
+            <div class="info-label">Once per week after 5PM</div>
           </div>
         </div>
         <div class="info-card"><i data-lucide="dollar-sign" width="28" class="info-icon"></i>
           <div>
             <div class="info-label">Tuition</div>
             <div class="info-value">$4,800</div>
-            <div class="info-label" style="font-size:0.6rem;">Early bird & alumni discounts</div>
+            <div class="info-label">Early bird & alumni discounts</div>
           </div>
         </div>
       </div>
@@ -763,6 +1598,8 @@
           </div>
           <div class="about-text">
             <h2 class="section-title" style="margin-bottom:1.5rem;">About the Program</h2>
+            <p>The future of aviation belongs to leaders who can think globally, lead strategically, and adapt rapidly.
+              Take off toward a future in aviation with a program designed to help you lead, innovate, and succeed.</p>
             <p>The Aviation Management certificate, developed through the collaboration between the Suliman S. Olayan
               School of Business (OSB) at the American University of Beirut (AUB) and International Air Transport
               Association (IATA), combines academic excellence with industry-relevant training to prepare professionals
@@ -824,133 +1661,131 @@
       </div>
     </section>
 
-    <!-- WHO SHOULD ENROLL (carousel with 3 per row, text left, images) -->
-    <section class="section">
+    <!-- ===== WHO SHOULD ENROLL (carousel version) ===== -->
+    <section class="section" style="background: #f5f5f5">
       <div class="container">
         <div class="reveal">
           <h2 class="section-title">Who Should Enroll?</h2>
         </div>
-        <div class="carousel-wrap reveal" id="carouselWrap">
-          <div class="carousel-track" id="carouselTrack">
-            <div class="carousel-slide">
-              <div class="slide-icon"><i data-lucide="user" width="28"></i></div>
-              <h4>Aviation Professionals</h4>
-              <p>Seeking to strengthen their expertise and advance their careers.</p>
-            </div>
-            <div class="carousel-slide">
-              <div class="slide-icon"><i data-lucide="briefcase" width="28"></i></div>
-              <h4>Airline & Airport Managers</h4>
-              <p>Responsible for operations, safety, and strategic decision-making.</p>
-            </div>
-            <div class="carousel-slide">
-              <div class="slide-icon"><i data-lucide="shield" width="28"></i></div>
-              <h4>Safety & Security Officers</h4>
-              <p>Aiming to stay aligned with international standards and best practices.</p>
-            </div>
-            <div class="carousel-slide">
-              <div class="slide-icon"><i data-lucide="building" width="28"></i></div>
-              <h4>Regulatory Professionals</h4>
-              <p>Working in aviation authorities and civil aviation organizations.</p>
-            </div>
-            <div class="carousel-slide">
-              <div class="slide-icon"><i data-lucide="trending-up" width="28"></i></div>
-              <h4>Aspiring Aviation Leaders</h4>
-              <p>Preparing for managerial and supervisory roles within the industry.</p>
-            </div>
-            <div class="carousel-slide">
-              <div class="slide-icon"><i data-lucide="graduation-cap" width="28"></i></div>
-              <h4>Recent Graduates</h4>
-              <p>In aviation, transportation, engineering, business, or related fields seeking specialized training.</p>
-            </div>
-            <div class="carousel-slide">
-              <div class="slide-icon"><i data-lucide="refresh-cw" width="28"></i></div>
-              <h4>Career Changers</h4>
-              <p>Professionals interested in transitioning into the aviation sector.</p>
-            </div>
-          </div>
-          <button class="carousel-btn prev" id="prevBtn" aria-label="Previous">‹</button>
-          <button class="carousel-btn next" id="nextBtn" aria-label="Next">›</button>
-        </div>
-        <div class="carousel-dots" id="dotsContainer"></div>
-        <div class="reveal"
-          style="margin-top:1.2rem; background:var(--color-gray-100); padding:0.8rem 1.5rem; border-radius:var(--radius-md);">
-          <p style="font-size:0.95rem;"><strong>Participants</strong> typically come from diverse professional and
-            academic backgrounds. Proficiency in spoken and written English is required.</p>
-        </div>
-      </div>
-    </section>
 
-    <section class="section" style="background: #f5f5f5">
-      <div class="container">
-        <h2 class="section-title">Who Should Enroll</h2>
-
-        <!-- carousel component - reusable, dynamic -->
-        <div class="carousel js-carousel carousel-3" data-carousel>
+        <!-- carousel component -->
+        <div class="carousel js-carousel" data-carousel>
           <!-- previous button -->
-          <button class="carousel__btn carousel__btn--prev js-carousel-prev" aria-label="Previous" disabled>
+          <button class="carousel__btn carousel__btn--prev js-carousel-prev" aria-label="Previous">
             &#10094;
           </button>
 
           <!-- scrollable container -->
           <div class="carousel__container js-carousel-container">
             <div class="carousel__track js-carousel-track">
-              <!-- original 3 cards (exact same content) -->
+              <!-- Slide 1 -->
               <div class="carousel__slide">
                 <div class="participant-card">
                   <div class="participant-card__image">
-                    <img src="../../images/AUB-OSB-OEP-Design-Thinking-Executuves-Managers.jpg"
-                      alt="Executives & Managers" onerror="
-                          this.src =
-                            'https://placehold.co/400x300/2d5a27/white?text=Executives'
-                        " />
+                    <img
+                      src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='250' viewBox='0 0 400 250'%3E%3Crect width='400' height='250' fill='%23840132'/%3E%3Ctext x='50%25' y='50%25' fill='white' font-size='20' text-anchor='middle' font-family='sans-serif'%3EAviation Professionals%3C/text%3E%3C/svg%3E"
+                      alt="Aviation Professionals" />
                   </div>
                   <div class="participant-card__content">
-                    <h3 class="participant-card__title">
-                      Executives & Managers
-                    </h3>
-                    <p class="participant-card__text">
-                      Decision-makers seeking insights into customer-centric
-                      solutions through team-based innovation.
+                    <h3 class="participant-card__title">Aviation Professionals</h3>
+                    <p class="participant-card__text">Seeking to strengthen their expertise and advance their careers.
                     </p>
                   </div>
                 </div>
               </div>
 
+              <!-- Slide 2 -->
               <div class="carousel__slide">
                 <div class="participant-card">
                   <div class="participant-card__image">
-                    <img src="../../images/AUB-OSB-OEP-Design-Thinking-Owenrs.jpg" alt="Entrepreneurs & Business Owners"
-                      onerror="
-                          this.src =
-                            'https://placehold.co/400x300/8b5a2b/white?text=Entrepreneurs'
-                        " />
+                    <img
+                      src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='250' viewBox='0 0 400 250'%3E%3Crect width='400' height='250' fill='%235e0e24'/%3E%3Ctext x='50%25' y='50%25' fill='white' font-size='20' text-anchor='middle' font-family='sans-serif'%3EAirline &amp; Airport Managers%3C/text%3E%3C/svg%3E"
+                      alt="Airline & Airport Managers" />
                   </div>
                   <div class="participant-card__content">
-                    <h3 class="participant-card__title">
-                      Entrepreneurs & Business Owners
-                    </h3>
-                    <p class="participant-card__text">
-                      Professionals aiming to enhance products and services
-                      for evolving customer needs.
+                    <h3 class="participant-card__title">Airline & Airport Managers</h3>
+                    <p class="participant-card__text">Responsible for operations, safety, and strategic decision-making.
                     </p>
                   </div>
                 </div>
               </div>
 
+              <!-- Slide 3 -->
               <div class="carousel__slide">
                 <div class="participant-card">
                   <div class="participant-card__image">
-                    <img src="../../images/AUB-OSB-OEP-Design-Thinking-Alumni.jpg" alt="AUB Alumni" onerror="
-                          this.src =
-                            'https://placehold.co/400x300/1e3a5f/white?text=AUB+Alumni'
-                        " />
+                    <img
+                      src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='250' viewBox='0 0 400 250'%3E%3Crect width='400' height='250' fill='%23a11b48'/%3E%3Ctext x='50%25' y='50%25' fill='white' font-size='20' text-anchor='middle' font-family='sans-serif'%3ESafety &amp; Security Officers%3C/text%3E%3C/svg%3E"
+                      alt="Safety & Security Officers" />
                   </div>
                   <div class="participant-card__content">
-                    <h3 class="participant-card__title">AUB Alumni</h3>
-                    <p class="participant-card__text">
-                      Looking to reconnect with the AUB network and renew
-                      their learning journey.
+                    <h3 class="participant-card__title">Safety & Security Officers</h3>
+                    <p class="participant-card__text">Aiming to stay aligned with international standards and best
+                      practices.</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Slide 4 -->
+              <div class="carousel__slide">
+                <div class="participant-card">
+                  <div class="participant-card__image">
+                    <img
+                      src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='250' viewBox='0 0 400 250'%3E%3Crect width='400' height='250' fill='%232d5a27'/%3E%3Ctext x='50%25' y='50%25' fill='white' font-size='20' text-anchor='middle' font-family='sans-serif'%3ERegulatory Professionals%3C/text%3E%3C/svg%3E"
+                      alt="Regulatory Professionals" />
+                  </div>
+                  <div class="participant-card__content">
+                    <h3 class="participant-card__title">Regulatory Professionals</h3>
+                    <p class="participant-card__text">Working in aviation authorities and civil aviation organizations.
                     </p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Slide 5 -->
+              <div class="carousel__slide">
+                <div class="participant-card">
+                  <div class="participant-card__image">
+                    <img
+                      src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='250' viewBox='0 0 400 250'%3E%3Crect width='400' height='250' fill='%231e3a5f'/%3E%3Ctext x='50%25' y='50%25' fill='white' font-size='20' text-anchor='middle' font-family='sans-serif'%3EAspiring Leaders%3C/text%3E%3C/svg%3E"
+                      alt="Aspiring Aviation Leaders" />
+                  </div>
+                  <div class="participant-card__content">
+                    <h3 class="participant-card__title">Aspiring Aviation Leaders</h3>
+                    <p class="participant-card__text">Preparing for managerial and supervisory roles within the
+                      industry.</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Slide 6 -->
+              <div class="carousel__slide">
+                <div class="participant-card">
+                  <div class="participant-card__image">
+                    <img
+                      src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='250' viewBox='0 0 400 250'%3E%3Crect width='400' height='250' fill='%238b5a2b'/%3E%3Ctext x='50%25' y='50%25' fill='white' font-size='20' text-anchor='middle' font-family='sans-serif'%3ERecent Graduates%3C/text%3E%3C/svg%3E"
+                      alt="Recent Graduates" />
+                  </div>
+                  <div class="participant-card__content">
+                    <h3 class="participant-card__title">Recent Graduates</h3>
+                    <p class="participant-card__text">In aviation, transportation, engineering, business, or related
+                      fields seeking specialized training.</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Slide 7 -->
+              <div class="carousel__slide">
+                <div class="participant-card">
+                  <div class="participant-card__image">
+                    <img
+                      src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='250' viewBox='0 0 400 250'%3E%3Crect width='400' height='250' fill='%234a6b8a'/%3E%3Ctext x='50%25' y='50%25' fill='white' font-size='20' text-anchor='middle' font-family='sans-serif'%3ECareer Changers%3C/text%3E%3C/svg%3E"
+                      alt="Career Changers" />
+                  </div>
+                  <div class="participant-card__content">
+                    <h3 class="participant-card__title">Career Changers</h3>
+                    <p class="participant-card__text">Professionals interested in transitioning into the aviation
+                      sector.</p>
                   </div>
                 </div>
               </div>
@@ -966,25 +1801,21 @@
         </div>
         <!-- /carousel -->
 
-        <!-- Program Requirements (unchanged) -->
-        <div class="requirements-grid">
+        <!-- Program Requirements -->
+        <div class="requirements-grid reveal">
           <div class="requirements-grid__image">
-            <img src="../../images/AUB-OSB-OEP-Design-Thinking-Program-Requirements.jpg" alt="Professional Learning"
-              onerror="
-                  this.src =
-                    'https://placehold.co/600x300/4a6b8a/white?text=Requirements'
-                " />
+            <img
+              src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='400' viewBox='0 0 600 400'%3E%3Crect width='600' height='400' fill='%23840132'/%3E%3Ctext x='50%25' y='50%25' fill='white' font-size='24' text-anchor='middle' font-family='sans-serif'%3EProgram Requirements%3C/text%3E%3C/svg%3E"
+              alt="Program Requirements" />
           </div>
           <div class="requirements-grid__content">
             <h3 class="requirements-grid__title">Program Requirements</h3>
             <ul class="requirements-grid__list">
               <li>
-                <span>Participants come from different sectors and
-                  industries</span>
+                <span>Participants come from different sectors and industries</span>
               </li>
               <li>
-                <span>Proficiency in spoken and written English is
-                  necessary</span>
+                <span>Proficiency in spoken and written English is necessary</span>
               </li>
             </ul>
           </div>
@@ -1034,23 +1865,25 @@
         <div class="details-grid reveal">
           <div class="detail-card">
             <div class="detail-icon"><i data-lucide="clock" width="36"></i></div>
-            <div class="number">8</div>
-            <div class="label">Months Duration</div>
+            <div class="label">Launch Date</div>
+            <div class="info-value">September 2026</div>
           </div>
           <div class="detail-card">
             <div class="detail-icon"><i data-lucide="calendar" width="36"></i></div>
-            <div class="number">Mid-Sep</div>
-            <div class="label">Tentative Start 2026</div>
+            <div class="label">Duration</div>
+            <div class="info-value">8 months</div>
           </div>
           <div class="detail-card">
             <div class="detail-icon"><i data-lucide="book-open" width="36"></i></div>
-            <div class="number">4</div>
-            <div class="label">Courses · 12 Credits</div>
+            <div class="label">Format</div>
+            <div class="info-value">In-person</div>
+            <div class="info-label">Once per week after 5PM</div>
           </div>
           <div class="detail-card">
             <div class="detail-icon"><i data-lucide="map-pin" width="36"></i></div>
-            <div class="number">AUB</div>
-            <div class="label">Beirut Campus</div>
+            <div class="label">Tuition</div>
+            <div class="info-value">$4,800</div>
+            <div class="info-label">Early bird & alumni discounts</div>
           </div>
         </div>
       </div>
@@ -1150,11 +1983,98 @@
     </section>
   </main>
 
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__accred"><img src="images/AUB-OSB-accreditations.png" alt="Accreditations" /></div>
+      <div class="footer-grid">
+        <div class="footer-item">
+          <h2 class="footer-item__title">Contact Us</h2>
+          <p class="footer-item__text">For various questions, please try contacting us via social media first!
+          </p><a href="#" class="footer-item__link">read more</a>
+        </div>
+        <div class="footer-item">
+          <h2 class="footer-item__title">Privacy Statement</h2>
+          <p class="footer-item__text">We take data privacy seriously and adhere to all applicable data
+            privacy laws and
+            regulations.</p><a href="#" class="footer-item__link">read more</a>
+        </div>
+        <div class="footer-item">
+          <h2 class="footer-item__title">Copyright and Disclaimer</h2>
+          <p class="footer-item__text">Written permission is needed to copy or disseminate all or part of the
+            materials
+            on the AUB website.</p><a href="#" class="footer-item__link">read more</a>
+        </div>
+        <div class="footer-item">
+          <h2 class="footer-item__title">Title IX, Non-Discrimination, and Anti-Discriminatory Harassment</h2>
+          <p class="footer-item__text">AUB is committed to providing a safe and respectful environment to all
+            members of
+            its community.</p><a href="#" class="footer-item__link">read more</a>
+        </div>
+      </div>
+    </div>
+    <div class="bg-burgundy">
+      <div class="container footer-links-grid">
+        <div class="footer-links-column">
+          <ul>
+            <li><a href="/Pages/AZ.aspx">A-Z</a></li>
+            <li><a href="/admissions/Pages/default.aspx">Admissions</a></li>
+            <li><a href="/admissions/applications/Pages/applications.aspx">Admissions Applications</a></li>
+            <li><a href="/admissions/Pages/EnglishRequirements.aspx">Admissions English Requirements</a>
+            </li>
+            <li><a href="/Pages/AUBSIS.aspx">AUBSSI</a></li>
+            <li><a href="https://careers.aub.edu.lb/Login" target="_blank">Career Portal</a></li>
+            <li><a href="/comptroller">Comptroller</a></li>
+            <li><a href="https://lms.aub.edu.lb/" target="_blank">E-Learning</a></li>
+          </ul>
+        </div>
+        <div class="footer-links-column">
+          <ul>
+            <li><a href="/emergency">Emergency</a></li>
+            <li><a href="/TestingCenter">AUB-EN</a></li>
+            <li><a href="/TestingCenter/Pages/aub-endresults.aspx">AUB-EN Results</a></li>
+            <li><a href="/academics/Pages/faculties.aspx">Faculties</a></li>
+            <li><a href="/comptroller/Pages/Student.aspx">Fees</a></li>
+            <li><a href="/faid">Financial Aid</a></li>
+            <li><a href="/Search/Pages/People.aspx">Find People</a></li>
+            <li><a href="/Employment">Jobs</a></li>
+          </ul>
+        </div>
+        <div class="footer-links-column">
+          <ul>
+            <li><a href="/libraries">Libraries</a></li>
+            <li><a href="/academics/Pages/majors_programs.aspx">Majors and Programs</a></li>
+            <li><a href="/comptroller/Pages/Payroll.aspx">Payroll</a></li>
+            <li><a href="/registrar">Registrar</a></li>
+            <li><a href="/faid/Pages/Scholarships.aspx">Scholarships</a></li>
+            <li><a href="/search/Pages/default.aspx">Search</a></li>
+            <li><a href="https://www.aub.edu.lb/Pages/Webmail.aspx" target="_blank">Webmail</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <ul class="social-links">
+        <li><a class="social-fb-icon" href="http://www.facebook.com/aub.edu.lb" target="_blank"
+            aria-label="Facebook">&nbsp;</a></li>
+        <li><a class="social-tw-icon" href="http://twitter.com/AUB_Lebanon" target="_blank"
+            aria-label="Twitter">&nbsp;</a></li>
+        <li><a class="social-in-icon" href="https://www.linkedin.com/company/american-university-of-beirut"
+            target="_blank" aria-label="LinkedIn">&nbsp;</a></li>
+        <li><a class="social-ig-icon" href="http://instagram.com/aub_lebanon" target="_blank"
+            aria-label="Instagram">&nbsp;</a></li>
+        <li><a class="social-yt-icon" href="https://www.youtube.com/aubatlebanon" target="_blank"
+            aria-label="Youtube">&nbsp;</a></li>
+      </ul>
+    </div>
+  </footer>
+
   <script>
     (function () {
+      // 1. Load Lucide icons
       if (typeof lucide !== 'undefined') lucide.createIcons();
 
-      // Scroll reveal
+      // 2. Scroll reveal animations
       const reveals = document.querySelectorAll('.reveal');
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -1166,107 +2086,7 @@
       }, { threshold: 0.1, rootMargin: '0px 0px -20px 0px' });
       reveals.forEach(el => observer.observe(el));
 
-      // Carousel – 3 slides visible, auto loop
-      const track = document.getElementById('carouselTrack');
-      const slides = track ? track.children : [];
-      const total = slides.length;
-      let current = 0;
-      let autoInterval = null;
-      const dotsContainer = document.getElementById('dotsContainer');
-      const prevBtn = document.getElementById('prevBtn');
-      const nextBtn = document.getElementById('nextBtn');
-      let slidesPerView = 3;
-
-      function getSlidesPerView() {
-        if (window.innerWidth < 640) return 1;
-        if (window.innerWidth < 992) return 2;
-        return 3;
-      }
-
-      function updateSlidesPerView() {
-        slidesPerView = getSlidesPerView();
-      }
-
-      function goTo(index) {
-        const max = Math.max(0, total - slidesPerView);
-        if (index < 0) index = max;
-        if (index > max) index = 0;
-        current = index;
-        if (track) {
-          const offset = current * (100 / slidesPerView);
-          track.style.transform = 'translateX(-' + offset + '%)';
-        }
-        updateDots();
-      }
-
-      function updateDots() {
-        const dots = dotsContainer ? dotsContainer.querySelectorAll('.carousel-dot') : [];
-        const max = Math.max(0, total - slidesPerView);
-        dots.forEach((dot, i) => {
-          dot.classList.toggle('active', i === current);
-        });
-      }
-
-      function createDots() {
-        if (!dotsContainer) return;
-        const max = Math.max(0, total - slidesPerView);
-        dotsContainer.innerHTML = '';
-        for (let i = 0; i <= max; i++) {
-          const dot = document.createElement('button');
-          dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
-          dot.setAttribute('data-index', i);
-          dot.addEventListener('click', function () {
-            stopAuto();
-            goTo(parseInt(this.dataset.index));
-            startAuto();
-          });
-          dotsContainer.appendChild(dot);
-        }
-      }
-
-      function nextSlide() { goTo(current + 1); }
-      function prevSlide() { goTo(current - 1); }
-
-      function startAuto() {
-        if (autoInterval) clearInterval(autoInterval);
-        autoInterval = setInterval(nextSlide, 4500);
-      }
-      function stopAuto() {
-        if (autoInterval) {
-          clearInterval(autoInterval);
-          autoInterval = null;
-        }
-      }
-
-      function initCarousel() {
-        updateSlidesPerView();
-        createDots();
-        goTo(0);
-        if (prevBtn) prevBtn.addEventListener('click', function (e) { e.preventDefault(); stopAuto(); prevSlide(); startAuto(); });
-        if (nextBtn) nextBtn.addEventListener('click', function (e) { e.preventDefault(); stopAuto(); nextSlide(); startAuto(); });
-        startAuto();
-        const wrap = document.getElementById('carouselWrap');
-        if (wrap) {
-          wrap.addEventListener('mouseenter', stopAuto);
-          wrap.addEventListener('mouseleave', startAuto);
-          wrap.addEventListener('touchstart', stopAuto);
-          wrap.addEventListener('touchend', startAuto);
-        }
-        window.addEventListener('resize', function () {
-          const old = slidesPerView;
-          updateSlidesPerView();
-          if (old !== slidesPerView) {
-            createDots();
-            goTo(0);
-          }
-        });
-      }
-
-      if (total > 0) {
-        initCarousel();
-      }
-
-      // Buttons alert
+      // 3. Button alerts (optional, you can keep or remove)
       document.querySelectorAll('.btn').forEach(btn => {
         btn.addEventListener('click', function (e) {
           e.preventDefault();
