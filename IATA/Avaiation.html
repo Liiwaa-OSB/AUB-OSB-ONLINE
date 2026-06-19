@@ -275,8 +275,6 @@
 
     .hero__sub {
       font-size: 1.2rem;
-      text-shadow: 2px 2px #a11b48;
-      /* primary-light */
       font-weight: 500;
       margin: 0.5rem 0 1rem;
     }
@@ -286,7 +284,6 @@
       opacity: 0.85;
       margin: 1rem 0 2rem;
       max-width: 600px;
-      text-shadow: 2px 2px #000;
     }
 
     .hero__buttons {
@@ -487,8 +484,9 @@
     /* ===== CAROUSEL ===== */
     .carousel {
       position: relative;
-      padding: 0 40px;
-      margin: 0 -10px;
+      padding: 0;
+      /* Remove horizontal padding */
+      margin: 0;
     }
 
     .carousel__container {
@@ -500,21 +498,26 @@
       display: flex;
       transition: transform 0.3s ease-out;
       will-change: transform;
+      gap: 1rem;
     }
 
     .carousel__slide {
       flex: 0 0 33.333%;
-      padding: 0 10px;
+      /* Changed from 33.333% to 100% */
+      padding: 0;
+      /* Remove padding */
       box-sizing: border-box;
       margin-bottom: 1px;
     }
 
-    /* Carousel buttons */
+    /* Carousel buttons - positioned on top of cards */
     .carousel__btn {
       position: absolute;
-      top: 50%;
+      top: 45%;
+      /* Keep vertical centering */
       transform: translateY(-50%);
-      background: white;
+      background: rgba(255, 255, 255, 0.9);
+      /* Semi-transparent background */
       border: 1px solid var(--color-gray-300);
       border-radius: 50%;
       width: 44px;
@@ -526,7 +529,7 @@
       transition: var(--transition);
       color: var(--color-primary-dark);
       font-size: 1.4rem;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
       z-index: 10;
     }
 
@@ -536,17 +539,42 @@
       border-color: var(--color-primary);
     }
 
+    /* Position buttons with some padding from edges */
     .carousel__btn--prev {
-      left: 0;
+      left: 15px;
+      /* Add some spacing from edge */
     }
 
     .carousel__btn--next {
-      right: 0;
+      right: 15px;
+      /* Add some spacing from edge */
     }
 
     .carousel__btn:disabled {
       opacity: 0.3;
       cursor: not-allowed;
+    }
+
+    /* Optional: Add a subtle shadow/gradient overlay to make buttons more visible */
+    .carousel__container::before,
+    .carousel__container::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 40px;
+      z-index: 5;
+      pointer-events: none;
+    }
+
+    .carousel__container::before {
+      left: 0;
+      background: linear-gradient(to right, rgba(255, 255, 255, 0.5), transparent);
+    }
+
+    .carousel__container::after {
+      right: 0;
+      background: linear-gradient(to left, rgba(255, 255, 255, 0.5), transparent);
     }
 
     /* ===== PARTICIPANT CARD ===== */
@@ -606,13 +634,13 @@
       }
 
       .carousel {
-        padding: 0 30px;
+        padding: 0;
       }
     }
 
     @media (max-width: 640px) {
       .carousel {
-        padding: 0 20px;
+        padding: 0;
       }
 
       .carousel__slide {
@@ -1593,9 +1621,7 @@
       <div class="container">
         <div class="about-grid reveal">
           <div class="about-image">
-            <img
-              src="images/AUB-OSB-Aviation-Program.jpg"
-              alt="Aviation Management">
+            <img src="images/AUB-OSB-Aviation-Program.jpg" alt="Aviation Management">
           </div>
           <div class="about-text">
             <h2 class="section-title" style="margin-bottom:1.5rem;">About the Program</h2>
@@ -1683,9 +1709,7 @@
               <div class="carousel__slide">
                 <div class="participant-card">
                   <div class="participant-card__image">
-                    <img
-                      src="images/AUB-OSB-Aviation-professionals.jpg"
-                      alt="Aviation Professionals" />
+                    <img src="images/AUB-OSB-Aviation-professionals.jpg" alt="Aviation Professionals" />
                   </div>
                   <div class="participant-card__content">
                     <h3 class="participant-card__title">Aviation Professionals</h3>
@@ -1699,9 +1723,7 @@
               <div class="carousel__slide">
                 <div class="participant-card">
                   <div class="participant-card__image">
-                    <img
-                      src="images/AUB-OSB-Aviation-airline-airport-managers.jpg"
-                      alt="Airline & Airport Managers" />
+                    <img src="images/AUB-OSB-Aviation-airline-airport-managers.jpg" alt="Airline & Airport Managers" />
                   </div>
                   <div class="participant-card__content">
                     <h3 class="participant-card__title">Airline & Airport Managers</h3>
@@ -1715,9 +1737,7 @@
               <div class="carousel__slide">
                 <div class="participant-card">
                   <div class="participant-card__image">
-                    <img
-                      src="images/AUB-OSB-Aviation-security-officers.jpg"
-                      alt="Safety & Security Officers" />
+                    <img src="images/AUB-OSB-Aviation-security-officers.jpg" alt="Safety & Security Officers" />
                   </div>
                   <div class="participant-card__content">
                     <h3 class="participant-card__title">Safety & Security Officers</h3>
@@ -1731,9 +1751,7 @@
               <div class="carousel__slide">
                 <div class="participant-card">
                   <div class="participant-card__image">
-                    <img
-                      src="images/AUB-OSB-Aviation-regulatory.jpg"
-                      alt="Regulatory Professionals" />
+                    <img src="images/AUB-OSB-Aviation-regulatory.jpg" alt="Regulatory Professionals" />
                   </div>
                   <div class="participant-card__content">
                     <h3 class="participant-card__title">Regulatory Professionals</h3>
@@ -1747,9 +1765,7 @@
               <div class="carousel__slide">
                 <div class="participant-card">
                   <div class="participant-card__image">
-                    <img
-                      src="images/AUB-OSB-Aviation-leaders.jpg"
-                      alt="Aspiring Aviation Leaders" />
+                    <img src="images/AUB-OSB-Aviation-leaders.jpg" alt="Aspiring Aviation Leaders" />
                   </div>
                   <div class="participant-card__content">
                     <h3 class="participant-card__title">Aspiring Aviation Leaders</h3>
@@ -1763,9 +1779,7 @@
               <div class="carousel__slide">
                 <div class="participant-card">
                   <div class="participant-card__image">
-                    <img
-                      src="images/AUB-OSB-Aviation-recent-graduates.jpg"
-                      alt="Recent Graduates" />
+                    <img src="images/AUB-OSB-Aviation-recent-graduates.jpg" alt="Recent Graduates" />
                   </div>
                   <div class="participant-card__content">
                     <h3 class="participant-card__title">Recent Graduates</h3>
@@ -1779,9 +1793,7 @@
               <div class="carousel__slide">
                 <div class="participant-card">
                   <div class="participant-card__image">
-                    <img
-                      src="images/AUB-OSB-Aviation-career-changers.jpg"
-                      alt="Career Changers" />
+                    <img src="images/AUB-OSB-Aviation-career-changers.jpg" alt="Career Changers" />
                   </div>
                   <div class="participant-card__content">
                     <h3 class="participant-card__title">Career Changers</h3>
@@ -1805,9 +1817,7 @@
         <!-- Program Requirements -->
         <div class="requirements-grid reveal">
           <div class="requirements-grid__image">
-            <img
-              src="images/AUB-OSB-program-requirements.jpg"
-              alt="Program Requirements" />
+            <img src="images/AUB-OSB-program-requirements.jpg" alt="Program Requirements" />
           </div>
           <div class="requirements-grid__content">
             <h3 class="requirements-grid__title">Program Requirements</h3>
