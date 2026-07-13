@@ -1123,23 +1123,64 @@
     <script>
         lucide.createIcons();
 
-        // Carousel logic for application carousel
-        function initCarousel(carouselElement, containerSelector, trackSelector, prevBtnSelector, nextBtnSelector) {
-            const container = carouselElement.querySelector(containerSelector);
-            const track = carouselElement.querySelector(trackSelector);
-            const prevBtn = carouselElement.querySelector(prevBtnSelector);
-            const nextBtn = carouselElement.querySelector(nextBtnSelector);
-            if (!container || !track) return;
+        document.addEventListener("DOMContentLoaded", () => {
+            initCarousel("#appCarousel");
+        });
 
-            const slide = () => {
-                const scrollAmount = container.clientWidth;
-                if (nextBtn && prevBtn) {
-                    nextBtn.onclick = () => { container.scrollBy({ left: scrollAmount * 0.9, behavior: 'smooth' }); };
-                    prevBtn.onclick = () => { container.scrollBy({ left: -scrollAmount * 0.9, behavior: 'smooth' }); };
+        function initCarousel(selector) {
+            const carousel = document.querySelector(selector);
+            if (!carousel) return;
+
+            const container = carousel.querySelector(".js-carousel-container-app");
+            const prevBtn = carousel.querySelector(".js-prev-app");
+            const nextBtn = carousel.querySelector(".js-next-app");
+
+            if (!container || !prevBtn || !nextBtn) return;
+
+            function getScrollAmount() {
+                const slide = container.querySelector(".carousel__slide");
+                if (!slide) return container.clientWidth;
+
+                const slideWidth = slide.getBoundingClientRect().width;
+                const styles = window.getComputedStyle(container.querySelector(".carousel__track"));
+                const gap = parseFloat(styles.columnGap || styles.gap || 0);
+
+                return slideWidth + gap;
+            }
+
+            function smoothScroll(amount) {
+                const target = container.scrollLeft + amount;
+
+                if ("scrollBehavior" in document.documentElement.style) {
+                    container.scrollTo({
+                        left: target,
+                        behavior: "smooth"
+                    });
+                } else {
+                    container.scrollLeft = target;
                 }
-            };
-            slide();
-            window.addEventListener('resize', () => slide());
+            }
+
+            function updateButtons() {
+                const maxScroll = container.scrollWidth - container.clientWidth;
+
+                prevBtn.disabled = container.scrollLeft <= 5;
+                nextBtn.disabled = container.scrollLeft >= maxScroll - 5;
+            }
+
+            prevBtn.addEventListener("click", () => {
+                smoothScroll(-getScrollAmount());
+            });
+
+            nextBtn.addEventListener("click", () => {
+                smoothScroll(getScrollAmount());
+            });
+
+            container.addEventListener("scroll", updateButtons, { passive: true });
+
+            window.addEventListener("resize", updateButtons);
+
+            updateButtons();
         }
     </script>
 </body>

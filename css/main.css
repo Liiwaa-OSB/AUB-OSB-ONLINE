@@ -629,6 +629,12 @@ body {
   z-index: 2;
 }
 
+.carousel__btn:disabled {
+    opacity: .35;
+    cursor: default;
+    pointer-events: none;
+}
+
 .carousel__btn--prev {
   left: -1rem;
 }
