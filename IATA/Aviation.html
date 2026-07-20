@@ -864,6 +864,23 @@
       height: 100%;
       object-fit: cover;
       display: block;
+      object-position: top;
+      transform: translateY(0);
+    }
+
+    .instructor-avatar {
+      width: 100%;
+      aspect-ratio: 1 / 1.5;
+      /* height is 70% of width */
+      overflow: hidden;
+    }
+
+    .instructor-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top;
+      display: block;
     }
 
     .instructor-body {
@@ -942,12 +959,23 @@
       }
 
       .instructor-row {
-        flex-direction: column;
+        /* flex-direction: column; */
       }
 
       .instructor-avatar {
-        flex: 0 0 180px;
-        min-height: 180px;
+        flex: 0 0 200px;
+        width: 100%;
+        overflow: hidden;
+        max-height: 340px;
+      }
+
+      .instructor-avatar img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: top;
+        display: block;
+        max-width: 400px;
       }
 
       .instructor-body {
@@ -980,9 +1008,12 @@
         padding: 2.5rem 0;
       }
 
+      .instructor-row {
+        flex-direction: column;
+      }
+
       .instructor-avatar {
-        flex: 0 0 140px;
-        min-height: 140px;
+        min-height: 400px;
       }
 
       .cta-block h2 {
@@ -1591,8 +1622,8 @@
       <div class="info-cards">
         <div class="info-card"><i data-lucide="calendar" width="28" class="info-icon"></i>
           <div>
-            <div class="info-label">Launch Date</div>
-            <div class="info-value">September 2026</div>
+            <div class="info-label">Admission Status</div>
+            <div class="info-value">Enrollment Open</div>
           </div>
         </div>
         <div class="info-card"><i data-lucide="clock" width="28" class="info-icon"></i>
@@ -1876,8 +1907,8 @@
         <div class="details-grid reveal">
           <div class="detail-card">
             <div class="detail-icon"><i data-lucide="clock" width="36"></i></div>
-            <div class="label">Launch Date</div>
-            <div class="info-value">September 2026</div>
+            <div class="label">Admission Status</div>
+            <div class="info-value">Enrollment Open</div>
           </div>
           <div class="detail-card">
             <div class="detail-icon"><i data-lucide="calendar" width="36"></i></div>
@@ -1907,7 +1938,7 @@
           <h2 class="section-title">Instructors</h2>
         </div>
         <div class="instructor-row reveal">
-          <div class="instructor-avatar"><img src="images/instructors/AUB-OSB-Avitaion-Captain Mazen Sammak.jpeg"
+          <div class="instructor-avatar"><img src="images/instructors/AUB-OSB-Avitaion-Captain-Mazen-Sammak.jpeg"
               alt="Captain Mazen"></div>
           <div class="instructor-body">
             <h4>Captain Mazen Sammak</h4>
@@ -1920,7 +1951,7 @@
           </div>
         </div>
         <div class="instructor-row reveal">
-          <div class="instructor-avatar"><img src="images/instructors/AUB-OSB-Avitaion-Captain Mohammed Aziz.jpeg"
+          <div class="instructor-avatar"><img src="images/instructors/AUB-OSB-Avitaion-Captain Mohammed-Aziz.jpg"
               alt="Captain Aziz"></div>
           <div class="instructor-body">
             <h4>Captain Mohammed Aziz, Ph.D.</h4>
@@ -1933,7 +1964,7 @@
           </div>
         </div>
         <div class="instructor-row reveal">
-          <div class="instructor-avatar"><img src="images/instructors/AUB-OSB-Avitaion-Ryan Hijazi.jpg"
+          <div class="instructor-avatar"><img src="images/instructors/AUB-OSB-Avitaion-Ryan-Hijazi.jpg"
               alt="Ryan Hijazi"></div>
           <div class="instructor-body">
             <h4>Ryan Hijazi, MSc Finance</h4>
@@ -1946,7 +1977,7 @@
           </div>
         </div>
         <div class="instructor-row reveal">
-          <div class="instructor-avatar"><img src="images/instructors/AUB-OSB-Avitaion-Isis Kamareddine.jpeg"
+          <div class="instructor-avatar"><img src="images/instructors/AUB-OSB-Avitaion-Isis-Kamareddine.jpg"
               alt="Isis Kamareddine"></div>
           <div class="instructor-body">
             <h4>Isis Kamareddine, MBA</h4>
@@ -1959,7 +1990,7 @@
           </div>
         </div>
         <div class="instructor-row reveal">
-          <div class="instructor-avatar"><img src="images/instructors/AUB-OSB-Avitaion-Mohammad Jammoul.jpeg"
+          <div class="instructor-avatar"><img src="images/instructors/AUB-OSB-Avitaion-Mohammad-Jammoul.jpg"
               alt="Mohammad Jammoul"></div>
           <div class="instructor-body">
             <h4>Mohammad Jammoul, MA in Law</h4>
@@ -1978,7 +2009,8 @@
     <section class="cta-full">
       <div class="cta-block reveal">
         <h2>Become a Leader in Aviation Management</h2>
-        <p>Being one of the first programs of its kind in the MENA region, this Aviation Management Diploma positions
+        <p>Being one of the first programs of its kind in the MENA region, this Aviation Management Certificate
+          positions
           you at the forefront of aviation education with IATA credentials and AUB academic excellence.</p>
         <div style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap;">
           <button class="btn btn-primary">Request Information</button>
@@ -1988,6 +2020,32 @@
       </div>
     </section>
   </main>
+
+
+  <!-- STICKY BUTTONS (unique design) -->
+  <div class="sticky-cta">
+    <a href="lii - Brochure LP link" class="sticky-cta__btn" aria-label="Download Brochure">
+      <svg class="sticky-cta__icon" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path
+          d="M7 5.222V0h2v5.193l1.107-1.107L11.52 5.5 7.986 9.036 4.45 5.5l1.414-1.414L7 5.222zM16 11v5H0v-5h2v3h12v-3h2z" />
+      </svg>
+      <span class="sticky-cta__label">Brochure</span></a>
+    <a href="lii - Apply LP link" class="sticky-cta__btn" aria-label="Apply Now">
+      <svg class="sticky-cta__icon" viewBox="0 -0.5 21 21" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path
+          d="M384,209.210475 L384,219 L363,219 L363,199.42095 L373.5,199.42095 L373.5,201.378855 L365.1,201.378855 L365.1,217.042095 L381.9,217.042095 L381.9,209.210475 L384,209.210475 Z M370.35,209.51395 L378.7731,201.64513 L380.4048,203.643172 L371.88195,212.147332 L370.35,212.147332 L370.35,209.51395 Z M368.25,214.105237 L372.7818,214.105237 L383.18415,203.64513 L378.8298,199 L368.25,208.687714 L368.25,214.105237 Z"
+          transform="translate(-363 -199)" />
+      </svg>
+      <span class="sticky-cta__label">Apply Now</span></a>
+    <a href="mailto:hn22@aub.edu.lb" class="sticky-cta__btn" aria-label="Contact">
+      <svg class="sticky-cta__icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <g fill="none" stroke="currentColor" stroke-width="2.8" stroke-linejoin="miter" stroke-linecap="butt">
+          <rect x="1" y="4" width="22" height="16" />
+          <polyline points="1 4 12 13 23 4" />
+        </g>
+      </svg>
+      <span class="sticky-cta__label">Contact</span></a>
+  </div>
 
   <!-- FOOTER -->
   <footer class="footer">
