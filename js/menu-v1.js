@@ -70,7 +70,7 @@
   // --- Event binding with Chrome compatibility
   window.addEventListener("scroll", onScroll, { passive: true });
   window.addEventListener("resize", handleResize);
-  
+
   // Initial call with slight delay for Chrome to calculate properly
   setTimeout(updateSticky, 100);
   updateSticky();
@@ -328,17 +328,43 @@
     },
     {
       title: "Executive Education",
-      url: "https://www.aub.edu.lb/osb/executiveeducation/Pages/default.aspx",
-      external: true,
-      isLink: true
+      links: [
+        {
+          text: "About Executive Education",
+          url: "https://www.aub.edu.lb/osb/executiveeducation/Site/index.html",
+        },
+        {
+          text: "Our Impact",
+          url: "https://www.aub.edu.lb/osb/executiveeducation/Site/our-impact.html",
+        },
+        {
+          text: "Open Enrollment Programs",
+          url: "https://www.aub.edu.lb/osb/executiveeducation/Site/open-enrollment-programs/index.html",
+        },
+        {
+          text: "Customized Programs",
+          url: "https://www.aub.edu.lb/osb/executiveeducation/Site/custom-programs/index.html",
+        },
+        {
+          text: "Contact Us",
+          url: "https://www.aub.edu.lb/osb/executiveeducation/Site/contact-us.html",
+        }
+      ]
     },
     {
-      title: "OSB Online",
+      title: "OSB Online Programs",
       links: [
-        { text: "Entrepreneurship & Innovation Online Graduate Professional Diploma", url: "https://www.aub.edu.lb/online/Entrepreneurship-Innovation-online-diploma/Pages/default.aspx", external: true },
-        { text: "Combating Trade-Based Financial Crime Online Certificate", url: "https://www.aub.edu.lb/osb/online/combating-trade-based-financial-crime-certificate/Pages/default.aspx", external: true },
-        { text: "Strategic Branding in the Digital Era Online Diploma", url: "https://www.aub.edu.lb/osb/online/strategic_branding/Pages/default.aspx", external: true },
-        { text: "Investment Analysis and Modern Portfolio Management Online Graduate Professional Diploma", url: "https://www.aub.edu.lb/osb/online/investment-analysis-modern-portfolio-management/Pages/default.aspx", external: true }
+        { text: "Entrepreneurship & Innovation", url: "https://www.aub.edu.lb/online/Entrepreneurship-Innovation-online-diploma/Pages/default.aspx", external: true },
+        { text: "Combating Trade-Based Financial Crime", url: "https://www.aub.edu.lb/osb/online/combating-trade-based-financial-crime-certificate/Pages/default.aspx", external: true },
+        { text: "Strategic Branding in the Digital Era", url: "https://www.aub.edu.lb/osb/online/strategic_branding/Pages/default.aspx", external: true },
+        { text: "Investment Analysis and Modern Portfolio Management", url: "https://www.aub.edu.lb/osb/online/investment-analysis-modern-portfolio-management/Pages/default.aspx", external: true },
+        { text: "Fintech and AI", url: "https://www.aub.edu.lb/osb/online/Pages/fintech-AI.htmlx", external: true }
+      ]
+    },
+    {
+      title: "Lifelong Learning Institute",
+      links: [
+        { text: "Aviation program", url: "https://www.aub.edu.lb/osb/lifelong_learning_institute/programs/Aviation-Certificate.html", external: true },
       ]
     },
     {
@@ -423,10 +449,10 @@
       });
 
       // Chrome-friendly click handler
-      button.addEventListener("click", function(e) {
+      button.addEventListener("click", function (e) {
         e.preventDefault();
         e.stopPropagation();
-        
+
         // Close other open menus
         document.querySelectorAll(".mobile-nav-link.has-sub.open").forEach(openBtn => {
           if (openBtn !== button) {
@@ -435,7 +461,7 @@
             if (siblingSubmenu) siblingSubmenu.classList.remove("open");
           }
         });
-        
+
         button.classList.toggle("open");
         submenu.classList.toggle("open");
       });
@@ -475,10 +501,10 @@
           submenu.appendChild(anchor);
         });
 
-        button.addEventListener("click", function(e) {
+        button.addEventListener("click", function (e) {
           e.preventDefault();
           e.stopPropagation();
-          
+
           // Close other open OSB menus
           document.querySelectorAll("#mobileOsbNav .mobile-nav-link.has-sub.open").forEach(openBtn => {
             if (openBtn !== button) {
@@ -487,7 +513,7 @@
               if (siblingSubmenu) siblingSubmenu.classList.remove("open");
             }
           });
-          
+
           button.classList.toggle("open");
           submenu.classList.toggle("open");
         });
@@ -505,7 +531,7 @@
     const container = document.getElementById("mobileUtilityGrid");
     if (!container) return;
     container.innerHTML = "";
-    
+
     utilityLinks.forEach(link => {
       const anchor = createLink(link);
       container.appendChild(anchor);
@@ -514,7 +540,7 @@
 
   // Initialize mobile menus when DOM is ready
   if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", function() {
+    document.addEventListener("DOMContentLoaded", function () {
       buildMobileMain();
       buildMobileOsb();
       buildUtilityGrid();

@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;800&display=swap" rel="stylesheet">
 
-    <link rel="icon" href="images/logos/favicon.ico" type="image/png">
+    <link rel="icon" href="images/favicon.ico" type="image/png">
 
     <link rel="stylesheet" href="css/menu.css" />
     <link rel="stylesheet" href="css/main.css" />
@@ -27,7 +27,7 @@
     </style>
 
     <script src="js/main.js" defer></script>
-    <script src="js/menu.js" defer></script>
+    <script src="js/menu-v1.1.js" defer></script>
 </head>
 
 <body>
@@ -59,7 +59,7 @@
             <div class="nav-main-container">
                 <div class="nav-logo">
                     <a href="https://www.aub.edu.lb/osb/Pages/default.aspx">
-                        <img src="images/logos/AUB+OSB-Merged-Logo-white.png" alt="AUB OSB Logo" />
+                        <img src="images/AUB+OSB-Merged-Logo-white.png" alt="AUB OSB Logo" />
                     </a>
                 </div>
                 <!-- Desktop mega menu (updated with full JSON structure) -->
@@ -401,7 +401,7 @@
         <div class="nav-osb" id="osbRow">
             <div class="nav-osb-container">
                 <div class="nav-osb-logo">
-                    <a href="/"><img src="images/logos/AUB+OSB-Merged-Logo-white.png" alt="AUB OSB Logo" /></a>
+                    <a href="/"><img src="images/AUB+OSB-Merged-Logo-white.png" alt="AUB OSB Logo" /></a>
                 </div>
                 <div class="nav-osb-links">
                     <ul class="osb-nav">
@@ -476,45 +476,74 @@
                             </ul>
                         </li>
                         <!-- Executive Education (external link + dropdown) -->
-                        <li class="osb-nav-item">
-                            <!-- lii replace href below -->
-                            <!-- href="https://www.aub.edu.lb/osb/executiveeducation/Pages/default.aspx" -->
-                            <a href="https://www.aub.edu.lb/osb/executiveeducation" target="_blank"
-                                id="executive-education-link">Executive Education</a>
+                        <li class="osb-nav-item has-dropdown">
+                            <a target="_blank" id="executive-education-link">Executive Education</a>
+                            <ul class="osb-dropdown">
+                                <li>
+                                    <a href="https://www.aub.edu.lb/osb/executiveeducation/Site/index.html"
+                                        target="_blank" id="about-executive-education">About Executive Education</a>
+                                </li>
+                                <li>
+                                <li>
+                                    <a href="https://www.aub.edu.lb/osb/executiveeducation/Site/our-impact.html"
+                                        target="_blank" id="our-impact">Our Impact</a>
+                                </li>
+                                <li>
+                                    <a href="https://www.aub.edu.lb/osb/executiveeducation/Site/open-enrollment-programs\index.html"
+                                        target="_blank" id="open-enrollment-programs">Open Enrollment Programs</a>
+                                </li>
+                                <li>
+                                    <a href="https://www.aub.edu.lb/osb/executiveeducation/Site/custom-programs\index.html"
+                                        target="_blank" id="customized-programs">Customized Programs</a>
+                                </li>
+                                <li>
+                                    <a href="https://www.aub.edu.lb/osb/executiveeducation/Site/contact-us.html"
+                                        id="contact-us">Contact Us</a>
+                                </li>
+                            </ul>
                         </li>
                         <!-- OSB Online with dropdown -->
                         <li class="osb-nav-item has-dropdown">
-                            <a id="osb-online-link">OSB Online</a>
+                            <a id="osb-online-link">OSB Online Programs</a>
                             <ul class="osb-dropdown">
                                 <li>
                                     <a href="https://www.aub.edu.lb/online/Entrepreneurship-Innovation-online-diploma/Pages/default.aspx"
                                         target="_blank" id="entrepreneurship-innovation-online-diploma">Entrepreneurship
-                                        & Innovation Online
-                                        Graduate
-                                        Professional Diploma</a>
+                                        & Innovation</a>
                                 </li>
                                 <li>
                                     <a href="https://www.aub.edu.lb/osb/online/combating-trade-based-financial-crime-certificate/Pages/default.aspx"
                                         target="_blank" id="combating-trade-based-financial-crime-certificate">Combating
                                         Trade-Based
-                                        Financial Crime Online
-                                        Certificate</a>
+                                        Financial Crime</a>
                                 </li>
                                 <li>
                                     <a href="https://www.aub.edu.lb/osb/online/strategic_branding/Pages/default.aspx"
                                         target="_blank" id="strategic-branding-digital-era-diploma">Strategic Branding
-                                        in the Digital Era Online Diploma</a>
+                                        in the Digital Era</a>
                                 </li>
                                 <li>
                                     <a href="https://www.aub.edu.lb/osb/online/investment-analysis-modern-portfolio-management/Pages/default.aspx"
                                         target="_blank"
                                         id="investment-analysis-modern-portfolio-management-diploma">Investment Analysis
-                                        and
-                                        Modern Portfolio Management
-                                        Online Graduate Professional Diploma</a>
+                                        and Modern Portfolio Management</a>
+                                </li>
+                                <li>
+                                    <a href="https://www.aub.edu.lb/osb/online/Pages/fintech-AI.html" target="_blank"
+                                        id="fintech-and-ai">Fintech and AI</a>
                                 </li>
                             </ul>
                         </li>
+                        <!-- OSB LLI with dropdown -->
+                        <!-- <li class="osb-nav-item has-dropdown">
+                            <a id="osb-lli-link">Lifelong Learning Institute</a>
+                            <ul class="osb-dropdown">
+                                <li>
+                                    <a href="https://www.aub.edu.lb/osb/lifelong_learning_institute/programs/Aviation-Certificate.html"
+                                        target="_blank" id="aviation-program">Aviation program</a>
+                                </li>
+                            </ul>
+                        </li> -->
                         <!-- Faculty -->
                         <li class="osb-nav-item">
                             <a href="/osb/Pages/Faculty.aspx" id="faculty">Faculty</a>
@@ -546,7 +575,7 @@
     <div class="nav-mobile-overlay" id="mobileOverlay">
         <div class="mobile-overlay-header">
             <div class="mobile-logo">
-                <img src="images/logos/AUB+OSB-Merged-Logo-white.png" alt="AUB" />
+                <img src="images/AUB+OSB-Merged-Logo-white.png" alt="AUB" />
             </div>
             <button class="mobile-close-btn" id="closeOverlayBtn">
                 <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
