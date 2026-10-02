@@ -11,7 +11,7 @@
 
     <link rel="icon" href="images/favicon.ico" type="image/png">
 
-    <link rel="stylesheet" href="css/main.css" />
+    <link rel="stylesheet" href="css/main-v1.css" />
 
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
@@ -127,12 +127,12 @@
             font-size: 1.2rem;
         }
 
-        /*  in main.css but caching */
+        /*  in main-v1.css but caching */
         .detail-border-box {
             overflow: visible;
         }
 
-        .info-card__value, 
+        .info-card__value,
         .detail-item-v__value {
             font-size: 1.1rem;
         }
@@ -340,41 +340,61 @@
         <section class="section" style="background: #ffffff;">
             <div class="container">
                 <h2 class="section-title">Program Structure</h2>
-                <div class="info-grid">
-                    <div class="info-card">
-                        <i data-lucide="book-open" width="32" class="info-card__icon"></i>
-                        <div class="info-card__title">Course 1</div>
-                        <div class="info-card__value>Banking Risks and Risk Governance</div>
-                        <div class="info-card__sub">3 credits</div>
+                <div class="program-structure-grid">
+
+                    <!-- Course 1 -->
+                    <div class="program-structure-card">
+                        <i data-lucide="landmark" width="32" height="32" class="program-structure-card__icon"></i>
+                        <div class="program-structure-card__label">Course 1</div>
+                        <h3 class="program-structure-card__title">Banking Risks and Risk Governance</h3>
+                        <div class="program-structure-card__credits">3 credits</div>
                     </div>
-                    <div class="info-card">
-                        <i data-lucide="book-open" width="32" class="info-card__icon"></i>
-                        <div class="info-card__title">Course 2</div>
-                        <div class="info-card__value">Global Capital Standards</div>
-                        <div class="info-card__sub">3 credits</div>
+
+                    <!-- Course 2 -->
+                    <div class="program-structure-card">
+                        <i data-lucide="scale" width="32" height="32" class="program-structure-card__icon"></i>
+                        <div class="program-structure-card__label">Course 2</div>
+                        <h3 class="program-structure-card__title">Global Capital Standards</h3>
+                        <div class="program-structure-card__credits">3 credits</div>
                     </div>
-                    <div class="info-card">
-                        <i data-lucide="book-open" width="32" class="info-card__icon"></i>
-                        <div class="info-card__title">Course 3</div>
-                        <div class="info-card__value">Global Liquidity Standards</div>
-                        <div class="info-card__sub">3 credits</div>
+
+                    <!-- Course 3 -->
+                    <div class="program-structure-card">
+                        <i data-lucide="droplets" width="32" height="32" class="program-structure-card__icon"></i>
+                        <div class="program-structure-card__label">Course 3</div>
+                        <h3 class="program-structure-card__title">Global Liquidity Standards</h3>
+                        <div class="program-structure-card__credits">3 credits</div>
                     </div>
-                    <div class="info-card">
-                        <i data-lucide="git-branch" width="32" class="info-card__icon"></i>
-                        <div class="info-card__title">Specialization</div>
-                        <div class="info-card__value">AML/CFT <em>or</em> Operational
-                            Resilience, Recovery & Resolution</div>
-                        <div class="info-card__sub">3 credits — Choose ONE</div>
+
+                    <!-- Specialization -->
+                    <div class="program-structure-card program-structure-card--special">
+                        <i data-lucide="git-branch" width="32" height="32" class="program-structure-card__icon"></i>
+                        <div class="program-structure-card__label">Specialization</div>
+                        <h3 class="program-structure-card__title">
+                            AML/CFT <em>or</em> <br /> Operational Resilience, Recovery &amp; Resolution
+                        </h3>
+                        <div class="program-structure-card__credits">3 credits — Choose ONE</div>
                     </div>
+
                 </div>
-                <div class="admission-block" style="margin-top: 2rem;">
-                    <div class="admission-title">Optional Extended Professional Pathway</div>
-                    <p style="color: #1f2937; line-height: 1.6; margin: 0;">
-                        Participants may subsequently complete the remaining specialization course, bringing the total
-                        to 15 graduate credits. Upon successful completion of all five courses, participants receive the
-                        Online Professional Graduate Certificate in Advanced Risk and Regulation in addition to the
-                        diploma.
-                    </p>
+
+                <!-- Optional Extended Pathway -->
+                <div class="pathway-card">
+                    <div class="pathway-card__icon-wrap">
+                        <i data-lucide="route" width="22" height="22"></i>
+                    </div>
+                    <div class="pathway-card__body">
+                        <div class="pathway-card__title">Optional Extended Professional Pathway</div>
+                        <p class="pathway-card__text">
+                            Participants may subsequently complete the remaining specialization course, bringing the
+                            total to
+                            <strong>15 graduate credits</strong>. Upon successful completion of all five courses,
+                            participants
+                            receive the <strong>Online Professional Graduate Certificate in Advanced Risk and
+                                Regulation</strong>
+                            in addition to the diploma.
+                        </p>
+                    </div>
                 </div>
             </div>
         </section>
@@ -390,27 +410,27 @@
                 <div class="info-grid" style="grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));">
                     <div class="info-card" style="text-align: center;">
                         <img src="images/faculty/Wassim-Kaakour.jpg" alt="Mr. Wassim Al-Kaakour"
-                            style="width: 80px; height: 80px; border-radius: 50%; object-fit: cover; margin: 0 auto 0.75rem; display: block;">
+                            style="width: 130px; height: 130px; border-radius: 50%; object-fit: cover; margin: 0 auto 0.75rem; display: block;">
                         <div class="info-card__title">Mr. Wassim Al-Kaakour</div>
                         <div class="info-card__sub" style="font-weight: 500; color: var(--color-primary);">AML/CFT</div>
                     </div>
                     <div class="info-card" style="text-align: center;">
                         <img src="images/faculty/Gaby-Frangieh.jpg" alt="Mr. Gaby Frangieh"
-                            style="width: 80px; height: 80px; border-radius: 50%; object-fit: cover; margin: 0 auto 0.75rem; display: block;">
+                            style="width: 130px; height: 130px; border-radius: 50%; object-fit: cover; margin: 0 auto 0.75rem; display: block;">
                         <div class="info-card__title">Mr. Gaby Frangieh</div>
                         <div class="info-card__sub" style="font-weight: 500; color: var(--color-primary);">Operational
                             Resilience, Recovery & Resolution</div>
                     </div>
                     <div class="info-card" style="text-align: center;">
                         <img src="images/faculty/Ibrahim.jpg" alt="Dr. Ibrahim Jamali"
-                            style="width: 80px; height: 80px; border-radius: 50%; object-fit: cover; margin: 0 auto 0.75rem; display: block;">
+                            style="width: 130px; height: 130px; border-radius: 50%; object-fit: cover; margin: 0 auto 0.75rem; display: block;">
                         <div class="info-card__title">Dr. Ibrahim Jamali</div>
                         <div class="info-card__sub" style="font-weight: 500; color: var(--color-primary);">Global
                             Liquidity Standards</div>
                     </div>
                     <div class="info-card" style="text-align: center;">
                         <img src="images/faculty/Rabih-Nehme.jpg" alt="Mr. Rabih Nehme"
-                            style="width: 80px; height: 80px; border-radius: 50%; object-fit: cover; margin: 0 auto 0.75rem; display: block;">
+                            style="width: 130px; height: 130px; border-radius: 50%; object-fit: cover; margin: 0 auto 0.75rem; display: block;">
                         <div class="info-card__title">Mr. Rabih Nehme</div>
                         <div class="info-card__sub" style="font-weight: 500; color: var(--color-primary);">Global
                             Capital
@@ -418,7 +438,7 @@
                     </div>
                     <div class="info-card" style="text-align: center;">
                         <img src="images/faculty/Assem.jpg" alt="Dr. Assem Safieddine"
-                            style="width: 80px; height: 80px; border-radius: 50%; object-fit: cover; margin: 0 auto 0.75rem; display: block;">
+                            style="width: 130px; height: 130px; border-radius: 50%; object-fit: cover; margin: 0 auto 0.75rem; display: block;">
                         <div class="info-card__title">Dr. Assem Safieddine</div>
                         <div class="info-card__sub" style="font-weight: 500; color: var(--color-primary);">Banking Risks
                             and Risk Governance</div>
@@ -428,18 +448,23 @@
         </section>
 
         <!-- WHO SHOULD ENROLL -->
-        <section class="section">
+        <section class="section enroll-section">
             <div class="container">
                 <h2 class="section-title">WHO SHOULD ENROLL?</h2>
-                <div class="split-layout">
-                    <div class="split-text">
-                        <p>The diploma is designed for professionals seeking to strengthen their expertise in banking
-                            regulation, risk management, compliance, governance, and financial supervision.</p>
+                <div class="enroll-layout">
 
-                        <div class="split-text__subtitle">You are:</div>
-                        <ol class="two-column-list">
-                            <li>Central bankers, financial regulators, bank supervisors, and
-                                supervisory authority professionals</li>
+                    <!-- Left Column: Text Content -->
+                    <div class="enroll-content">
+                        <p class="enroll-intro">
+                            The diploma is designed for professionals seeking to strengthen their expertise in banking
+                            regulation, risk management, compliance, governance, and financial supervision.
+                        </p>
+
+                        <div class="enroll-subtitle">You are:</div>
+
+                        <ol class="enroll-list">
+                            <li>Central bankers, financial regulators, bank supervisors, and supervisory authority
+                                professionals</li>
                             <li>Banking professionals, particularly risk and compliance officers</li>
                             <li>Internal and external auditors</li>
                             <li>Professionals working in AML/CFT and financial crime compliance</li>
@@ -450,17 +475,23 @@
                             <li>Financial controllers</li>
                         </ol>
                     </div>
-                    <div class="split-image">
-                        <img src="images/AUB-OSB-Risk-enroll.jpg" alt="Who should enroll illustration">
+
+                    <!-- Right Column: Image -->
+                    <div class="enroll-image">
+                        <img src="images/AUB-OSB-Risk-enroll.jpg" alt="Professional working in risk and regulation">
                     </div>
                 </div>
 
-                <div class="admission-block">
-                    <div class="admission-title">PROGRAM REQUIREMENTS</div>
-                    <ul class="admission-list">
+                <!-- Program Requirements (Redesigned to match page aesthetic) -->
+                <div class="program-requirements">
+                    <div class="program-requirements__header">
+                        <i data-lucide="clipboard-check" width="24" height="24"></i>
+                        <span>PROGRAM REQUIREMENTS</span>
+                    </div>
+                    <ul class="program-requirements__list">
                         <li>Applicants should normally hold a bachelor's degree from a recognized institution,
-                            preferably in business, finance, accounting, economics, engineering, management, or a
-                            related field.</li>
+                            preferably in
+                            business, finance, accounting, economics, engineering, management, or a related field.</li>
                         <li>Candidates from other disciplines may also be considered based on relevant professional or
                             managerial experience.</li>
                         <li>Applicants must satisfy AUB's applicable English proficiency requirements.</li>
@@ -609,7 +640,8 @@
                 <polyline points="16 11 19 14 23 7" />
             </svg>
             <span class="sticky-cta__label">Apply Now</span></a>
-        <a href="https://bookings.cloud.microsoft/book/OneonOneConsultationBookingPage@mail.aub.edu/?ismsaljsauthenabled" class="sticky-cta__btn" aria-label="One-on-one Meeting">
+        <a href="https://bookings.cloud.microsoft/book/OneonOneConsultationBookingPage@mail.aub.edu/?ismsaljsauthenabled"
+            class="sticky-cta__btn" aria-label="One-on-one Meeting">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <path
@@ -629,6 +661,8 @@
 
     <div id="footer-placeholder"></div>
     <script src="https://liiwaa-osb.github.io/AUB-OSB-shared-components/footer-load-V.js"></script>
+    <!-- lii never remove this comment - keep it and use it when website is set live -->
+    <!-- <script src="https://www.aub.edu.lb/osb/AUB_OSB_shared_components/footer-load-V.js"></script> -->
 
     <script>
         lucide.createIcons();
