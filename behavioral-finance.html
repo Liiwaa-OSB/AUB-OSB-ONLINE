@@ -19,12 +19,31 @@
         .osb-dropdown #behavioral-finance {
             color: var(--color-primary);
         }
+
         /* Hero */
         .hero {
             background: linear-gradient(rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.15)), url(images/AUB-OSB-Behavioral-banner.jpg) center 55% / cover no-repeat;
             padding: calc(60vh - 325px) 0 2rem 0;
             position: relative;
             height: 60vh;
+        }
+
+        .hero__content {
+            color: #000;
+        }
+
+        .btn--outline-light {
+            background: rgba(0, 0, 0, 0.1);
+            color: #000;
+            border: 0;
+        }
+
+        .btn--outline-light:hover {
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .hero__title {
+            line-height: 1;
         }
     </style>
 
@@ -41,13 +60,14 @@
             <div class="hero__overlay"></div>
             <div class="container">
                 <div class="hero__content hero__content--left">
-                    <h1 class="hero__title">BEHAVIORAL FINANCE</h1>
+                    <h1 class="hero__title">BEHAVIORAL<br>FINANCE</h1>
                     <h2 class="hero__subtitle">ONLINE PROFESSIONAL CERTIFICATE</h2>
-                    <p class="hero__text">UNDERSTAND THE PSYCHOLOGY BEHIND FINANCIAL DECISIONS</p>
                     <div class="hero__buttons">
-                        <a href="https://ocp.aub.edu.lb/newapplication?program=d8fff28d-743e-4efb-a014-8f6d6614d2fc"
+                        <a target="_blank"
+                            href="https://ocp.aub.edu.lb/newapplication?program=d8fff28d-743e-4efb-a014-8f6d6614d2fc"
                             class="btn btn--primary">Register</a>
-                        <a href="mailto:behavioralFinCert@aub.edu.lb" class="btn btn--outline-light">Contact OSB Online
+                        <a target="_blank" href="mailto:behavioralfincert@aub.edu.lb"
+                            class="btn btn--outline-light">Contact OSB Online
                             Team</a>
                     </div>
                 </div>
@@ -118,7 +138,8 @@
                         <p>
                             The certificate emphasizes the intersection of psychology, economics, and finance, covering
                             areas such as prospect theory, loss aversion, overconfidence, herd behavior, mental
-                            accounting, and other behavioral biases. Through interactive online lectures and real-world
+                            accounting, and other behavioral biases. Through interactive online lectures and
+                            real&#8209;world
                             case studies, participants will develop the ability to identify and evaluate behavioral
                             biases, analyze their impact on financial decisions and market dynamics, and apply
                             behavioral insights to investment strategies, corporate finance, and personal financial
@@ -163,12 +184,12 @@
                         <div class="reason-card__inner">
                             <div class="reason-card__front">
                                 <i data-lucide="line-chart" width="48" height="48" class="reason-card__top-icon"></i>
-                                <div class="reason-card__title">PRACTICAL &amp; REALWORLD</div>
+                                <div class="reason-card__title">PRACTICAL &amp; REAL&#8209;WORLD</div>
                                 <div class="reason-card__short">Apply behavioral finance concepts to actual financial
                                     decisions and market situations.</div>
                             </div>
                             <div class="reason-card__back">
-                                <p>Go beyond theoretical concepts through real-world case studies and practical
+                                <p>Go beyond theoretical concepts through real&#8209;world case studies and practical
                                     applications. Examine how behavioral insights can inform investment management,
                                     portfolio construction, risk management, corporate finance, and personal financial
                                     decisions, with attention to relevant Middle East examples.</p>
@@ -317,7 +338,7 @@
                     <div class="info-card">
                         <i data-lucide="calendar" width="32" class="info-card__icon"></i>
                         <div class="info-card__title">DATE</div>
-                        <div class="info-card__value">Launching soon</div>
+                        <div class="info-card__value">November 16, 2026</div>
                     </div>
 
                     <div class="info-card">
@@ -352,7 +373,8 @@
                     </p>
                     <div class="cta__divider">
                         <div class="cta__contact-links">
-                            <a class="btn btn--white" href="mailto:behavioralFinCert@aub.edu.lb">Contact Us</a>
+                            <a target="_blank" class="btn btn--white" href="mailto:behavioralfincert@aub.edu.lb">Contact
+                                Us</a>
                         </div>
                     </div>
                 </div>
@@ -362,7 +384,8 @@
 
     <!-- STICKY BUTTONS -->
     <div class="sticky-cta">
-        <a href="#" class="sticky-cta__btn" aria-label="Download Brochure">
+        <a target="_blank" href="https://www.aub.edu.lb/osb/Landing/Pages/Online-Behavioral-Finance-Brochure.html"
+            class="sticky-cta__btn" aria-label="Download Brochure">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
@@ -371,7 +394,8 @@
             </svg>
             <span class="sticky-cta__label">Brochure</span>
         </a>
-        <a href="https://ocp.aub.edu.lb/newapplication?program=d8fff28d-743e-4efb-a014-8f6d6614d2fc" class="sticky-cta__btn" aria-label="Apply Now">
+        <a target="_blank" href="https://ocp.aub.edu.lb/newapplication?program=d8fff28d-743e-4efb-a014-8f6d6614d2fc"
+            class="sticky-cta__btn" aria-label="Apply Now">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
@@ -380,14 +404,16 @@
             </svg>
             <span class="sticky-cta__label">Apply Now</span>
         </a>
-        <a href="https://bookings.cloud.microsoft/book/InvestmentAnalysisModernPortfolioManagementOnlineDiploma@mail.aub.edu/?ismsaljsauthenabled=true" class="sticky-cta__btn" aria-label="One-on-one Meeting">
+        <a target="_blank"
+            href="https://bookings.cloud.microsoft/book/InvestmentAnalysisModernPortfolioManagementOnlineDiploma@mail.aub.edu/?ismsaljsauthenabled=true"
+            class="sticky-cta__btn" aria-label="One-on-one Meeting">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <path
                     d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67 A2 2 0 0 1 4.11 2h3 a2 2 0 0 1 2 1.72 c.12.89.33 1.76.63 2.6 a2 2 0 0 1-.45 2.11L8.09 9.91 a16 16 0 0 0 6 6 l1.48-1.2 a2 2 0 0 1 2.11-.45 c.84.3 1.71.51 2.6.63 A2 2 0 0 1 22 16.92z" />
             </svg>
             <span class="sticky-cta__label">One-on-one Meeting</span></a>
-        <a href="mailto:behavioralFinCert@aub.edu.lb" class="sticky-cta__btn" aria-label="Contact">
+        <a target="_blank" href="mailto:behavioralfincert@aub.edu.lb" class="sticky-cta__btn" aria-label="Contact">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
